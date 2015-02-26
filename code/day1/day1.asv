@@ -1,0 +1,5 @@
+% load('measurements.mat');
+% plot(measurements.time, measurements.signals(1).values);
+
+% plot(simout_measurements.time, simout_measurements.signals.values(:, 1));
+plot(simout_measurements.time, simout_measurements.time);
