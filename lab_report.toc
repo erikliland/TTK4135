@@ -1,0 +1,19 @@
+\select@language {USenglish}
+\contentsline {section}{Abstract}{2}{Doc-Start}
+\contentsline {section}{Contents}{3}{section*.1}
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Software}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Other Comments}{5}{subsection.1.2}
+\contentsline {section}{\numberline {2}Problem Description}{6}{section.2}
+\contentsline {section}{\numberline {3}Repetition/Introduction to Simulink/QuaRC}{7}{section.3}
+\contentsline {section}{\numberline {4}Optimal Control of Pitch/Travel without Feedback}{8}{section.4}
+\contentsline {section}{\numberline {5}Optimal Control of Pitch/Travel with Feedback (LQ)}{11}{section.5}
+\contentsline {section}{\numberline {6}Optimal Control of Pitch/Travel and Elevation with and without Feedback}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}Results and Discussion}{12}{subsection.6.1}
+\contentsline {section}{\numberline {7}Discussion}{13}{section.7}
+\contentsline {section}{\numberline {8}Conclusion}{14}{section.8}
+\contentsline {section}{\numberline {A}MATLAB Code}{15}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}plot\_constraint.m}{15}{subsection.A.1}
+\contentsline {section}{\numberline {B}Simulink Diagrams}{16}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}A Simulink Diagram}{16}{subsection.B.1}
+\contentsline {section}{Bibliography}{17}{section*.2}
