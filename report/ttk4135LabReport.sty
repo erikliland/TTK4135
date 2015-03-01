@@ -1,0 +1,52 @@
+\ProvidesPackage{ttk4135LabReport}
+
+\RequirePackage{babel}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{graphicx}
+\RequirePackage{epstopdf}
+\RequirePackage[round]{natbib}
+\RequirePackage{tocbibind}
+\RequirePackage[thinspace,amssymb]{SIunits}
+\RequirePackage{listings, courier, color}
+
+\newcommand{\studentnumbers}[1]{\def \@stnum{#1}}
+\newcommand{\groupnumber}[1]{\def \@grpnum{#1}}
+
+
+\title{TTK4135 Optimization and Control\\Lab Report}
+\studentnumbers{}
+\groupnumber{}
+\author{\@stnum\\Group \@grpnum}
+
+\newcommand{\makelabreportfrontpage}{
+	\maketitle
+	\thispagestyle{empty}
+	\vfill
+	\begin{center}
+		Department of Engineering Cybernetics\\
+		Norwegian University of Science and Technology
+	\end{center}
+	\clearpage
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{pink}{rgb}{0.63, 0.13, 0.94}
+
+\lstset{language=Matlab,
+	keywords={break, case, catch, continue,else,elseif,end,for,function,
+		global,if,otherwise,persistent,return,switch,try,while},
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{pink},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=10pt,
+	backgroundcolor=\color{white},
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false
+}
