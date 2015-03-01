@@ -1,7 +1,6 @@
 \documentclass[11pt,a4paper,USenglish]{article} % change ``USenglish'' to ``norsk'' if applicable
 
 \usepackage{ttk4135LabReport}
-
 \usepackage{babel}
 \usepackage{amsmath,amssymb}
 \usepackage[latin1]{inputenc}
@@ -14,21 +13,20 @@
 \usepackage[T1]{fontenc}
 \usepackage[thinspace,amssymb]{SIunits}
 \usepackage{listings, courier, color}
-
 \usepackage[hidelinks]{hyperref} % Always load last
 
 \studentnumbers{750001, 750002, 750003, and 750004 (Tor Aksel Heirung)}
 \groupnumber{99}
 \date{January 1, 1999}
 
+\includeonly{problem2} %Use this to only compile the chapter you are working on [EL]
 \begin{document}
 
 
-\makelabreportfrontpage
-
+%\makelabreportfrontpage
 \include{abstract}
 
-\tableofcontents
+%\tableofcontents
 
 \include{intro}
 \include{problem_descr}
@@ -45,7 +43,7 @@
 
 \clearpage
 \bibliographystyle{apalike}
-\bibliography{helibib}\label{sec:bibliography}
+%\bibliography{helibib}\label{sec:bibliography}
 
 
 \end{document}
