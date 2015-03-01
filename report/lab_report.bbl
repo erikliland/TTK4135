@@ -1,23 +1,8 @@
 \begin{thebibliography}{}
 
-\bibitem[Berland, 2010]{Berland2010}
-Berland, H. (2010).
-\newblock {\em {En introduksjon til Latex}}.
-\newblock \url{http://www.pvv.ntnu.no/~berland/latex/latexintro4up.pdf}.
-
-\bibitem[Downes, 2002]{Downes2002}
-Downes, M. (2002).
-\newblock {\em {Short Math Guide for LATEX}}.
-\newblock \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}.
-
 \bibitem[Nocedal and Wright, 2006]{Nocedal2006}
 Nocedal, J. and Wright, S.~J. (2006).
 \newblock {\em {Numerical Optimization}}.
 \newblock Springer, second edition.
-
-\bibitem[Oetiker et~al., 2011]{Oetiker2011}
-Oetiker, T., Partl, H., Hyna, I., and Schlegl, E. (2011).
-\newblock {\em {The Not So Short Introduction to LATEX 2e}}.
-\newblock \url{http://tobi.oetiker.ch/lshort/lshort.pdf}.
 
 \end{thebibliography}
