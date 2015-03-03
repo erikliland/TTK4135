@@ -1,2 +1,0 @@
-# TTK4135
-Helikopterlab TTK4135 NTNU

@@ -1,0 +1,8 @@
+*-eps-converted-to.pdf
+*.aux
+*.out
+*.log
+*.asv
+slprj/
+helikopter_quarc_windows/
+*.rt-windows
