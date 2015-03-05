@@ -3,6 +3,7 @@
 *.out
 *.log
 *.asv
+*lab_report.pdf
 slprj/
 helikopter_quarc_windows/
 *.rt-windows
