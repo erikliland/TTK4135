@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.63"
+    ComputedModelVersion    "1.68"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "eriklil"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 05 10:31:41 2015"
-  RTWModifiedTimeStamp	  347451659
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Thu Mar 05 12:06:08 2015"
+  RTWModifiedTimeStamp	  347457919
+  ModelVersionFormat	  "1.%<AutoIncrement:68>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -956,7 +956,7 @@ Model {
   }
   System {
     Name		    "helikopter"
-    Location		    [1443, 266, 1870, 503]
+    Location		    [996, 87, 1899, 481]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -968,15 +968,24 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "38"
+    ZoomFactor		    "85"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    80
+    SIDHighWatermark	    107
+    Block {
+      BlockType		      FromWorkspace
+      Name		      " optimal input"
+      SID		      95
+      Position		      [90, 128, 155, 152]
+      VariableName	      "u_star"
+      SampleTime	      "0"
+      ZeroCross		      on
+    }
     Block {
       BlockType		      Sum
       Name		      "Add"
       SID		      1
       Ports		      [2, 1]
-      Position		      [785, 337, 815, 368]
+      Position		      [785, 377, 815, 408]
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
       OutDataType	      "sfix(16)"
@@ -989,7 +998,7 @@ Model {
       Name		      "Add1"
       SID		      77
       Ports		      [2, 1]
-      Position		      [760, 132, 790, 163]
+      Position		      [760, 172, 790, 203]
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
       OutDataType	      "sfix(16)"
@@ -1001,7 +1010,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant"
       SID		      2
-      Position		      [715, 345, 745, 375]
+      Position		      [715, 385, 745, 415]
       Value		      "-30"
       OutDataType	      "sfix(16)"
       OutScaling	      "2^0"
@@ -1010,7 +1019,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant1"
       SID		      78
-      Position		      [690, 90, 720, 120]
+      Position		      [690, 130, 720, 160]
       Value		      "180"
       OutDataType	      "sfix(16)"
       OutScaling	      "2^0"
@@ -1019,7 +1028,7 @@ Model {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      80
-      Position		      [270, 335, 300, 365]
+      Position		      [270, 375, 300, 405]
       Value		      "0"
       OutDataType	      "sfix(16)"
       OutScaling	      "2^0"
@@ -1029,7 +1038,7 @@ Model {
       Name		      "Demux"
       SID		      3
       Ports		      [1, 6]
-      Position		      [90, 178, 95, 257]
+      Position		      [90, 218, 95, 297]
       ShowName		      off
       Outputs		      "6"
       DisplayOption	      "bar"
@@ -1039,7 +1048,7 @@ Model {
       Name		      "Elevasjonskontroller"
       SID		      4
       Ports		      [3, 1]
-      Position		      [350, 285, 460, 365]
+      Position		      [350, 325, 460, 405]
       BackgroundColor	      "green"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1220,19 +1229,10 @@ Model {
       }
     }
     Block {
-      BlockType		      FromWorkspace
-      Name		      "From\nWorkspace"
-      SID		      76
-      Position		      [195, 93, 260, 117]
-      VariableName	      "pitch_input"
-      SampleTime	      "0"
-      ZeroCross		      on
-    }
-    Block {
       BlockType		      Gain
       Name		      "Gain"
       SID		      16
-      Position		      [885, 215, 915, 245]
+      Position		      [885, 255, 915, 285]
       Gain		      "eye(6)*pi/180"
       Multiplication	      "Matrix(K*u)"
       ParameterDataTypeMode   "Inherit via internal rule"
@@ -1250,7 +1250,7 @@ Model {
       Name		      "HIL Initialize"
       SID		      17
       Ports		      []
-      Position		      [480, 359, 652, 434]
+      Position		      [55, 334, 227, 409]
       AttributesFormatString  "%<object_name> (%<board_type>-%<board_number>)"
       LibraryVersion	      "1.1187"
       UserDataPersistent      on
@@ -1338,7 +1338,7 @@ Model {
       Name		      "Heli 3D"
       SID		      18
       Ports		      [2, 6]
-      Position		      [580, 144, 740, 316]
+      Position		      [580, 184, 740, 356]
       BackgroundColor	      "green"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1803,11 +1803,226 @@ Model {
       }
     }
     Block {
+      BlockType		      SubSystem
+      Name		      "LQR"
+      SID		      99
+      Ports		      [3, 1]
+      Position		      [175, 66, 350, 154]
+      BackgroundColor	      "red"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"LQR"
+	Location		[1235, 252, 1822, 733]
+	Open			on
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Full state vector"
+	  SID			  100
+	  Position		  [50, 65, 65, 95]
+	  NamePlacement		  "alternate"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Optimal trajectory"
+	  SID			  101
+	  Position		  [45, 223, 75, 237]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "u_star"
+	  SID			  102
+	  Position		  [45, 328, 75, 342]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Demux
+	  Name			  "Demux"
+	  SID			  104
+	  Ports			  [1, 6]
+	  Position		  [110, 13, 115, 147]
+	  ShowName		  off
+	  Outputs		  "6"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Kx"
+	  SID			  98
+	  Position		  [260, 211, 315, 249]
+	  Gain			  "K'"
+	  Multiplication	  "Matrix(u*K)"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux"
+	  SID			  105
+	  Ports			  [4, 1]
+	  Position		  [150, 16, 155, 104]
+	  ShowName		  off
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  SID			  97
+	  Ports			  [2, 1]
+	  Position		  [310, 325, 330, 345]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum2"
+	  SID			  96
+	  Ports			  [2, 1]
+	  Position		  [215, 220, 235, 240]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "-+|"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator"
+	  SID			  106
+	  Position		  [165, 120, 185, 140]
+	}
+	Block {
+	  BlockType		  Terminator
+	  Name			  "Terminator1"
+	  SID			  107
+	  Position		  [165, 160, 185, 180]
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Optimal pitch referance"
+	  SID			  103
+	  Position		  [355, 328, 385, 342]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  DstBlock		  "Kx"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Kx"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Optimal trajectory"
+	  SrcPort		  1
+	  DstBlock		  "Sum2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "u_star"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "Optimal pitch referance"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Full state vector"
+	  SrcPort		  1
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  1
+	  DstBlock		  "Mux"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  2
+	  DstBlock		  "Mux"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  3
+	  DstBlock		  "Mux"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  4
+	  DstBlock		  "Mux"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  5
+	  Points		  [15, 0; 0, 20]
+	  DstBlock		  "Terminator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Demux"
+	  SrcPort		  6
+	  Points		  [5, 0; 0, 40]
+	  DstBlock		  "Terminator1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  Points		  [65, 0]
+	  DstBlock		  "Sum2"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
       BlockType		      Scope
       Name		      "Measurements"
       SID		      65
       Ports		      [3]
-      Position		      [990, 108, 1020, 172]
+      Position		      [990, 148, 1020, 212]
       Floating		      off
       Location		      [994, 393, 1822, 839]
       Open		      off
@@ -1829,7 +2044,7 @@ Model {
       Name		      "Mux"
       SID		      43
       Ports		      [6, 1]
-      Position		      [850, 143, 865, 317]
+      Position		      [850, 183, 865, 357]
       ShowName		      off
       Inputs		      "6"
       DisplayOption	      "bar"
@@ -1839,7 +2054,7 @@ Model {
       Name		      "Pitch-kontroller"
       SID		      44
       Ports		      [3, 1]
-      Position		      [350, 134, 455, 246]
+      Position		      [350, 174, 455, 286]
       BackgroundColor	      "green"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1988,21 +2203,21 @@ Model {
     }
     Block {
       BlockType		      Terminator
-      Name		      "Terminator"
-      SID		      54
-      Position		      [145, 150, 165, 170]
+      Name		      "Term"
+      SID		      55
+      Position		      [190, 210, 210, 230]
     }
     Block {
       BlockType		      Terminator
-      Name		      "Terminator1"
-      SID		      55
-      Position		      [215, 150, 235, 170]
+      Name		      "Terminator"
+      SID		      54
+      Position		      [190, 175, 210, 195]
     }
     Block {
       BlockType		      ToFile
       Name		      "To File1"
       SID		      73
-      Position		      [990, 215, 1050, 245]
+      Position		      [990, 255, 1050, 285]
       Filename		      "measurements.mat"
       MatrixName	      "measurements"
     }
@@ -2011,7 +2226,7 @@ Model {
       Name		      "To Workspace"
       SID		      74
       Ports		      [1]
-      Position		      [990, 320, 1050, 350]
+      Position		      [990, 360, 1050, 390]
       VariableName	      "simout_measurements"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -2022,7 +2237,7 @@ Model {
       Name		      "V_d/V_s --> V_f/V_b"
       SID		      56
       Ports		      [2, 2]
-      Position		      [480, 149, 555, 316]
+      Position		      [480, 189, 555, 356]
       BackgroundColor	      "green"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -2161,6 +2376,16 @@ Model {
 	}
       }
     }
+    Block {
+      BlockType		      FromWorkspace
+      Name		      "optimal trajectory "
+      SID		      76
+      Position		      [90, 98, 155, 122]
+      NamePlacement	      "alternate"
+      VariableName	      "x_star"
+      SampleTime	      "0"
+      ZeroCross		      on
+    }
     Line {
       SrcBlock		      "Pitch-kontroller"
       SrcPort		      1
@@ -2201,26 +2426,21 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [0, -5; 10, 0; 0, -15]
+      Points		      [55, 0; 0, -35]
       DstBlock		      "Terminator"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux"
       SrcPort		      2
-      Points		      [100, 0]
-      DstBlock		      "Terminator1"
+      Points		      [75, 0]
+      DstBlock		      "Term"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
       Points		      [0, 0]
-      Branch {
-	Points			[0, -160; -845, 0]
-	DstBlock		"Demux"
-	DstPort			1
-      }
       Branch {
 	Points			[15, 0; 10, 0]
 	Branch {
@@ -2233,13 +2453,19 @@ Model {
 	  DstPort		  1
 	}
       }
-    }
-    Line {
-      SrcBlock		      "From\nWorkspace"
-      SrcPort		      1
-      Points		      [10, 0; 0, 50]
-      DstBlock		      "Pitch-kontroller"
-      DstPort		      1
+      Branch {
+	Points			[0, -210; -770, 0]
+	Branch {
+	  Points		  [-90, 0; 0, 200]
+	  DstBlock		  "Demux"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 20]
+	  DstBlock		  "LQR"
+	  DstPort		  1
+	}
+      }
     }
     Line {
       SrcBlock		      "Demux"
@@ -2354,6 +2580,25 @@ Model {
       DstBlock		      "Add1"
       DstPort		      1
     }
+    Line {
+      SrcBlock		      "optimal trajectory "
+      SrcPort		      1
+      DstBlock		      "LQR"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      " optimal input"
+      SrcPort		      1
+      DstBlock		      "LQR"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "LQR"
+      SrcPort		      1
+      Points		      [5, 0; 0, 55; -45, 0; 0, 30]
+      DstBlock		      "Pitch-kontroller"
+      DstPort		      1
+    }
   }
 }
 MatData {
@@ -2363,21 +2608,21 @@ MatData {
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ "
+    "    &          4    (     0    $    !          D    (         $B 0D "
   }
   DataRecord {
     Tag			    DataTag1
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ "
+    "    &          4    (     0    $    !          D    (         $B 0D "
   }
   DataRecord {
     Tag			    DataTag0
     Data		    "  %)30     .    0#<   8    (     @         %    \"     $    !     0         %  0 $0    $   !F    :7-?=6"
     "YI<75E          !O;&1?8FQO8VL          &]L9%]N86UE            :7-?;6]D96Q?8VQO<VEN9P!S971T:6YG<P           &ES7V1E"
     ";&5T960            .    ,     8    (    \"0(        %    \"     $    !     0         \"  $  0    X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ .    .     8    (    !          %    \"     $ "
+    "    &          4    (     0    $    !          D    (         $B 0D .    .     8    (    !          %    \"     $ "
     "   %     0         0    !0   $A)3\"TQ    #@   #     &    \"     D\"        !0    @    !     0    $          @ !   "
     "    .    <#4   8    (     @         %    \"     $    !     0         %  0 #P    $    M    ;VQD7V)O87)D7W1Y<&4 <3@ "
     "                <30                     #@   #     &    \"     0         !0    @    !     @    $         $  \" '$T"

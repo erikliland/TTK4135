@@ -1,4 +1,4 @@
-run('../init.m'); %% Endret m_g til 0.025 fra 0.012
+run('../init.m');
 
 % Adjustable parameters
 x0 = [pi 0 0 0]';        % Initial state
@@ -10,9 +10,9 @@ offsetTime = 5;          % Init time at start of simulation
 n_offset = offsetTime/h; % Deadzone at start and end (timesteps)
 Q = eye(nx);             % State penalty weights
 Q(2,2) = 0;              % Free travel rate 
-Q(3,3) = 0.00;           % Free pitch 
+Q(3,3) = 1;              % Non-Free pitch
 Q(4,4) = 0;              % Free pitch rate
-R  = 1;                  % Input penalty weight
+R  = eye(nu);            % Input penalty weight
 
 % System state and input bounds
 pitch_lim = 30*pi/180;
@@ -34,11 +34,8 @@ Ac = [0 1     0         0 ;
 Bc = [0 ; 0 ; 0 ; K_1*K_pp];
 
 % Discrete-time system matrices
-%A = eye(4) + h * Ac;
-%B = h * Bc;
-M = expm(h*[Ac Bc ; 0 0 0 0 0]);
-A = M(1:4, 1:4);
-B = M(1:4, 5);
+A = eye(4) + h * Ac;
+B = h * Bc;
 
 % Generate equality constraints matrix
 Aeq = gena2(A, B, N, nx, nu);
@@ -54,11 +51,14 @@ H = genq2(Q, R, N, N, nu);
 [lb, ub] = genbegr2(N, N, x_min, x_max, u_min, u_max);
 lb(nx*(N-1)+1) = 0; %Limit last state
 ub(nx*(N-1)+1) = 0; %Limit last state
-% lb((nx+nu)*N)  = 0; %Limit last input
-% ub((nx+nu)*N)  = 0; %Limit last input
 f = zeros(1, n);
 z = quadprog(H, f, [], [], Aeq, Beq, lb, ub);
 u = z(N*nx+1:n);
+
+% LQR
+Q_LQR = diag([1 4 1 1]);
+R_LQR = eye(nu);
+[K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 
 % Plot simulated system
 figure(1); clf(1);
@@ -78,39 +78,25 @@ xlabel('Time [s]');
 ylabel('Agle [deg]');
 title(sprintf('Simulation of system over %d-length horizon', N));
 
+% Create Simulink inputs
 t = (0:N+2*n_offset-1) * h;
-pitch_input = zeros(N+2*n_offset, 2);
-pitch_input(:, 1) = t;
-pitch_input(n_offset+1:N+n_offset, 2) = u;
-
-x1 = [x0(1);z(1:nx:N*nx)];
-x2 = [x0(2);z(2:nx:N*nx)];
-x3 = [x0(3);z(3:nx:N*nx)];
-x4 = [x0(4);z(4:nx:N*nx)];
-x1  = [pi*ones(n_offset-1,1); x1; zeros(n_offset,1)];
-x2  = [zeros(n_offset-1,1); x2; zeros(n_offset,1)];
-x3  = [zeros(n_offset-1,1); x3; zeros(n_offset,1)];
-x4  = [zeros(n_offset-1,1); x4; zeros(n_offset,1)];
-
-%Discrete plot
-figure(2);
-subplot(511);
-stairs(t,pitch_input(:,2)),grid
-ylabel('u')
-subplot(512)
-plot(t,x1,'m',t,x1,'mo'),grid
-ylabel('lambda')
-subplot(513)
-plot(t,x2,'m',t,x2','mo'),grid
-ylabel('r')
-subplot(514)
-plot(t,x3,'m',t,x3,'mo'),grid
-ylabel('p')
-subplot(515)
-plot(t,x4,'m',t,x4','mo'),grid
-xlabel('tid (s)'),ylabel('pdot')
+u_star = zeros(N+2*n_offset, 2);
+u_star(:, 1) = t;
+u_star(n_offset+1:N+n_offset, 2) = u;
+x_star = zeros(N+2*n_offset, nx+1);
+x_star(:, 1) = t;
+%TODO: Check initial state from 0 to n_offset.
+% Change to pi (x0)
+x_star(n_offset+1:N+n_offset, 2) = z(1:4:N*nx);
+x_star(n_offset+1:N+n_offset, 3) = z(2:4:N*nx);
+x_star(n_offset+1:N+n_offset, 4) = z(3:4:N*nx);
+x_star(n_offset+1:N+n_offset, 5) = z(4:4:N*nx);
+figure(2)
+plot(x_star(:,1), x_star(:,2) , x_star(:,1), x_star(:,3) ,x_star(:,1), x_star(:,4) ,x_star(:,1), x_star(:,5));
+legend('Travel','Travel rate','Pitch','Pitch rate')
 
 %% Plot results
+figure(1);
 load ('measurements.mat');
 t = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
@@ -119,7 +105,7 @@ plot(t,travel, 'LineWidth', 2,'LineStyle','--');
 plot(t, pitch, 'LineWidth', 2, 'LineStyle', '--');
 legend('Sim Travel', 'Sim Pitch','Real Travel', 'Real Pitch');
 xlabel('Time [s]');
-ylabel('Agle [deg]');
+ylabel('Angle [deg]');
 title('Simulated optimal trajectory without feedback');
 axis square;
 box  on;
