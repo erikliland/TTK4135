@@ -1,2 +1,51 @@
 \section{Optimal Control of Pitch/Travel with Feedback (LQ)}\label{sec:prob3}
 TODO: Se template
+
+
+\section{Notater under dagen}
+Vi satt Q = diag[1 0 0 0], R = 2, og justerte Q_LQR.
+
+* Q_LQR justerer hvor mye vi vil straffe avvik mellom målt tilstands- og pådrags-trajektor og den beregnede optimale trajektoren.
+
+* R_LQR justerer hvor hardt vi vil straffe avvik mellom pådrag brukt og optimalt
+pådrag???
+TODO: Sjekk dette!
+
+Hvordan lage plots
+------------------
+For hver kjøring med parametere beskrevet nedenfor, så ligger en
+tilsvarende measurements_q_xxxx.mat i measurements mappa. load
+denne i Matlab, plot optimal trajectory og plot målingene.
+
+Følg prosedyre i niceFigure.m for å plotte figurene i god kvalitet.
+
+Q_LQR = diag[1 1 1 1], R = diag[1]
+----------------------------------
+Sammenligningsreferanse.
+
+Q_LQR = diag[20 1 1 1], R = diag[1]
+-----------------------------------
+Følger travel-trajektoren tettere, gav bra respons.
+
+Q_LQR = diag[50 1 1 1], R = diag[1]
+-----------------------------------
+Følger travel-trajektoren enda tettere, bedre respons.
+
+Q_LQR = diag[50 5 0 0], R = diag[1]
+-----------------------------------
+Ble ustabilt når vi tulla med pitch manuelt på slutten, siden
+vi ikke straffer bruk av pitch rate.
+
+Q_LQR = diag[50 1 20 1], R = diag[1]
+-----------------------------------
+Kommentar?
+
+Q_LQR = diag[1 1 10 1], R = diag[1]
+----------------------------------
+Den optimale pitch-referanse trajektoren er basert på en dårlig modell.
+Så vi bør egentlig ikke følge den altfor tett. Følging av travel-trajektoren
+gir bedre resultat og kompenserer for modellfeil.
+
+Q_LQR = diag[1 1 40 1], R = diag[1]
+----------------------------------
+Verre respons, siden vi følger en dårlig pådrags-trajektor.
