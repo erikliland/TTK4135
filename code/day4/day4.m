@@ -15,7 +15,7 @@ run('../init.m');
 % Adjustable parameters
 x0 = [pi 0 0 0 0 0]';       % Initial state
 h  = 0.25;                  % Discretization timestep
-N  = 15;                    % Length of horizon
+N  = 40;                    % Length of horizon
 nx = 6;                     % Number of states of system
 nu = 2;                     % Number of inputs of system
 Q  = diag([1 0 0.1 0 0 0]); % State penalty weights
@@ -61,7 +61,7 @@ final_e = alpha*exp(-beta*(-travel_t)^2);
 final_x = [0 0 0 0 0 0]';
 final_u = [0 0]';
 z0 = [x0 ; 
-      repmat(final_x, N-1, 1) ; 
+      repmat(final_x, N-1, 1);
       repmat(final_u, N, 1)];
 z = fmincon(f, z0, [], [], Aeq, Beq);
 % z = quadprog(H, [], [], [], Aeq, Beq, lb, ub);
