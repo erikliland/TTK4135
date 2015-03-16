@@ -1,4 +1,5 @@
 function [c, ceq] = confun(z)
+global N nx alpha beta travel_t
 % Nonlinear inequality constraints
 c = zeros(N, 1);
 for k=1:N
