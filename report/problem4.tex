@@ -1,8 +1,62 @@
 \section{Optimal Control of Pitch/Travel and Elevation with and without Feedback}\label{sec:prob4}
-TODO: Se template
+In this section we extend our model to include the remaining states: elevation, $e$, and elevation
+rate, $\dot{e}$. We use a non-linear solver to compute an optimal trajectory in two dimensions,
+and additionally constrain the elevation to avoid a restriction shaped as a bell-curve.
 
-\section{Notater for dagen: 16. mars}
-Fikk fmincon til å fungere, med ikke-lineær constraint.
-TODO: Test uten LQR. Lag egen slx hvor vi kopler ut LQR blokka.
+\subsection{State-space formulation}
+The state-vector is extended with the remaining states, $x = \begin{bmatrix} \lambda & r & p & \dot{p} & e & \dot{e} \end{bmatrix}^T$, and the input-vector also contains the elevation setpoint fed to the internal controller, $u = \begin{bmatrix} p_c & e_c \end{bmatrix}^T$. The system is on the usual state-space form (\ref{eq:state_space_axbu}),
+with
+\begin{equation}
+    \dot{x} =
+    \underbrace{
+    \begin{bmatrix}
+    0 & 1 &      0     &      0     &      0     &      0    \\
+    0 & 0 &    -K_2    &      0     &      0     &      0    \\
+    0 & 0 &      0     &      1     &      0     &      0    \\
+    0 & 0 & -K_1K_{pp} & -K_1K_{pd} &      0     &      0    \\
+    0 & 0 &      0     &      0     &      0     &      1    \\
+    0 & 0 &      0     &      0     & -K_3K_{ep} & -K_3K_{ed}
+    \end{bmatrix}}_{A_c}
+    x +
+    \underbrace{
+    \begin{bmatrix}
+        0       &     0     \\
+        0       &     0     \\
+        0       &     0     \\
+    K_1K_{pp}   &     0     \\
+        0       &     0     \\
+        0       & K_3K_{ep}
+    \end{bmatrix}}_{B_c}
+    u
+    \label{eq:extended_state_space}
+\end{equation}
 
-TODO: Kjør tuning tester. Juster Q_LQR.
+\subsection{Discretization}
+We discretize (\ref{eq:extended_state_space}) using the same method
+as in section (\ref{sec:prob2}). That is, an approximation of the
+discrete-time state-space matrices is
+\begin{equation}
+    A \approx I + hA_c
+    \qquad\text{and}\qquad
+    B \approx hB_c
+\end{equation}
+where $I$ is now the $6\times6$ identity matrix.
+
+\subsection{Modelling the restriction}
+A common application of optimal control is to implement restrictions,
+such as avoiding physical objects, as constraints in the optimization
+problem. Such restrictions can not be enforced when using only state-
+feedback controllers.
+
+We wish to restrict the helicopter head to move above a bell-shaped curve
+\begin{equation}
+    e_k \geq \alpha \exp (-\beta (\lambda_k - \lambda_t)^2 )
+\end{equation}
+for all timesteps $k$ over the solution horizon. Since this is a non-
+linear constraint, we can no longer use a QP solver.
+
+% \section{Notater for dagen: 16. mars}
+% Fikk fmincon til å fungere, med ikke-lineær constraint.
+% TODO: Test uten LQR. Lag egen slx hvor vi kopler ut LQR blokka.
+
+% TODO: Kjør tuning tester. Juster Q_LQR.
