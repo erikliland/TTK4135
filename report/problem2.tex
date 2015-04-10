@@ -88,3 +88,14 @@ for $t = 0...N-1$. Applying these constraints to all states and inputs in the so
 which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$.
 
 Note that the cost function (\ref{eq:trajectory_cost}) does not take into consideration that $\lambda_i$ plus some multiple of $2\pi$ describes the same physical orientation of the helicopter. For example, if the reference is $0$ and $\lambda_i = 2\pi$, it will be regarded as a large error, even though the helicopter is infact in the desired orientation. A more optimal scheme would take this into consideration.
+
+\subsection{Results}
+
+% TODO: Add figure showing that the helicopter does NOT end up in our desired final state, xf.
+
+% TODO: Explain WHY the helicopter does not reach the final state. Why was the computed trajectory not optimal in the physical sense? etc...
+
+% Grunner til at den beregnede optimale banen gir ugunstig resultat:
+%     * I modellen antar vi at pitch-regulatoren er såpass kjapp, at pitch vil være nøyaktig like pitch-referanse til enhver tid. Dette er åpenbart feil. Men den største grunnen er:
+
+%     * Diverse andre modelleringsfeil gjør at den beregnede pådragssekvensen ikke er den fysisk optimale sekvensen. Hadde modellen vært perfekt, ville helikopteret fulgt banen. Feedback kan hjelpe med å kjempe mot modelleringsfeil.

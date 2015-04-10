@@ -8,11 +8,13 @@
 \contentsline {subsection}{\numberline {4.1}State-space formulation}{7}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Discretization}{7}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Computation of optimal trajectory}{8}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Results}{8}{subsection.4.4}
 \contentsline {section}{\numberline {5}Optimal Control of Pitch/Travel with Feedback (LQ)}{9}{section.5}
 \contentsline {section}{\numberline {6}Optimal Control of Pitch/Travel and Elevation with and without Feedback}{10}{section.6}
 \contentsline {subsection}{\numberline {6.1}State-space formulation}{10}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Discretization}{10}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Modelling the restriction}{10}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Results}{10}{subsection.6.4}
 \contentsline {section}{\numberline {7}Discussion}{11}{section.7}
 \contentsline {section}{\numberline {8}Conclusion}{12}{section.8}
 \contentsline {section}{\numberline {A}MATLAB Code}{13}{appendix.A}
