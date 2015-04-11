@@ -3,21 +3,25 @@
 \contentsline {section}{Contents}{3}{section*.1}
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}
 \contentsline {section}{\numberline {2}Problem Description}{5}{section.2}
-\contentsline {section}{\numberline {3}Repetition/Introduction to Simulink/QuaRC}{6}{section.3}
-\contentsline {section}{\numberline {4}Optimal Control of Pitch/Travel without Feedback}{7}{section.4}
-\contentsline {subsection}{\numberline {4.1}State-space formulation}{7}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Discretization}{7}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Computation of optimal trajectory}{8}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Results}{8}{subsection.4.4}
-\contentsline {section}{\numberline {5}Optimal Control of Pitch/Travel with Feedback (LQ)}{9}{section.5}
-\contentsline {section}{\numberline {6}Optimal Control of Pitch/Travel and Elevation with and without Feedback}{10}{section.6}
-\contentsline {subsection}{\numberline {6.1}State-space formulation}{10}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Discretization}{10}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Modelling the restriction}{10}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Results}{10}{subsection.6.4}
-\contentsline {section}{\numberline {7}Discussion}{11}{section.7}
-\contentsline {section}{\numberline {8}Conclusion}{12}{section.8}
-\contentsline {section}{\numberline {A}MATLAB Code}{13}{appendix.A}
-\contentsline {subsection}{\numberline {A.1}plot\_constraint.m}{13}{subsection.A.1}
-\contentsline {section}{\numberline {B}Simulink Diagrams}{14}{appendix.B}
-\contentsline {subsection}{\numberline {B.1}A Simulink Diagram}{14}{subsection.B.1}
+\contentsline {subsection}{\numberline {2.1}Hardware setup}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Software setup}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Model discussion}{6}{subsection.2.3}
+\contentsline {section}{\numberline {3}Repetition/Introduction to Simulink/QuaRC}{8}{section.3}
+\contentsline {section}{\numberline {4}Optimal Control of Pitch/Travel without Feedback}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}State-space formulation}{9}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Discretization}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Computation of optimal trajectory}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Results}{10}{subsection.4.4}
+\contentsline {section}{\numberline {5}Optimal Control of Pitch/Travel with Feedback (LQ)}{11}{section.5}
+\contentsline {section}{\numberline {6}Optimal Control of Pitch/Travel and Elevation with and without Feedback}{12}{section.6}
+\contentsline {subsection}{\numberline {6.1}State-space formulation}{12}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Discretization}{12}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Modelling the restriction}{12}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Results}{12}{subsection.6.4}
+\contentsline {section}{\numberline {7}Discussion}{13}{section.7}
+\contentsline {section}{\numberline {8}Conclusion}{14}{section.8}
+\contentsline {section}{\numberline {A}MATLAB Code}{15}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}plot\_constraint.m}{15}{subsection.A.1}
+\contentsline {section}{\numberline {B}Simulink Diagrams}{16}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}A Simulink Diagram}{16}{subsection.B.1}
+\contentsline {section}{Bibliography}{17}{section*.2}
