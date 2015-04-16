@@ -23,7 +23,7 @@ n_offset = offsetTime/h; % Deadzone at start and end (timesteps)
 nx = 6;                     % Number of states of system
 nu = 2;                     % Number of inputs of system
 nz = N*(nx+nu);             % Size of z
-Q  = diag([1 0 0 0 0 0]); % State penalty weights
+Q  = diag([1 0 0.1 0 0 0]); % State penalty weights
 R  = diag([1 1]);           % Input penalty weight
 
 % Non-linear elevation constraint params
@@ -69,13 +69,7 @@ final_u = [0 final_e+0.1]';
 z0 = [x0 ; 
       repmat(final_x, N-1, 1);
       repmat(final_u, N, 1)];
-  options = optimset('Algorithm','sqp');
-z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun,options);
-
-% LQR
-Q_LQR = diag([20 1 1 1 30 10]);
-R_LQR = diag([1 1]);
-[K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
+z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun);
 
 % Create Simulink inputs
 t = (0:N+2*n_offset-1) * h;
@@ -105,7 +99,7 @@ subplot(2,1,1);
 hold all;
 plot(t, x_star(:,2)*180/pi, 'LineWidth', 2);
 plot(t, u_star(:,2)*180/pi,  'LineWidth', 2);
-legend('x_t^*','u_p^*');
+legend('Travel', 'Pitch setpoint');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 subplot(2,1,2);
@@ -114,7 +108,7 @@ c = alpha*exp(-beta*(sim_travel-travel_t).^2);
 plot(t, x_star(:,6)*180/pi,   'LineWidth', 2);
 plot(t, u_star(:,3)*180/pi,   'LineWidth', 2);
 plot(t, [zeros(n_offset,1); c*180/pi; zeros(n_offset,1)], '--', 'LineWidth', 2);
-legend('x_e^*', 'u_e^*', 'Constraint');
+legend('Elevation', 'Elevation setpoint', 'Constraint');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 
@@ -122,25 +116,21 @@ ylabel('Angle [deg]');
 %% Plot results
 figure(1);
 load ('measurements.mat');
-load ('inputs.mat');
-save (sprintf('../../measurements/day4/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
-save (sprintf('../../measurements/day4/inputs_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
+save (sprintf('../../measurements/day4_openloop/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
+pitch = (180/pi)*measurements(4,:);
 elevation = (180/pi)*measurements(6,:);
-pitchInput = (180/pi)*inputs(2,:);
-elevationInput = (180/pi)*inputs(3,:);
 subplot(2,1,1);
 hold all;
 plot(t_real,travel, 'LineWidth', 2,'LineStyle','--');
-plot(t_real, pitchInput, 'LineWidth', 2, 'LineStyle', '--');
-legend('x_t^*', 'u_p^*','x_t','u_p');
+plot(t_real, pitch, 'LineWidth', 2, 'LineStyle', '--');
+legend('Opt travel traj', 'Opt pitch ref','Real Travel', 'Real Pitch');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
-title('Simulated optimal trajectory with feedback');
+title('Simulated optimal trajectory without feedback');
 
 subplot(2,1,2);
 hold all;
 plot(t_real,elevation, 'LineWidth', 2,'LineStyle','--');
-% plot(t_real,elevationInput, 'LineWidth', 2,'LineStyle','--');
-legend('x_e^*','u_e^*','Constraint','x_e');
+legend('Opt elev traj', 'Opt elev ref', 'Constraint','Real elevation');
