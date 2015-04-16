@@ -95,7 +95,7 @@ title(sprintf('Simulation of system over %d-length horizon', N));
 %% Plot results
 figure(1);
 load ('measurements.mat');
-save (sprintf('../../measurements/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'simout_measurements');
+save (sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'simout_measurements');
 t = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
