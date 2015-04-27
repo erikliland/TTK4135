@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.63"
+    ComputedModelVersion    "1.65"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "eriklil"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 05 10:31:41 2015"
-  RTWModifiedTimeStamp	  347451659
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Mon Apr 27 14:00:18 2015"
+  RTWModifiedTimeStamp	  352044017
+  ModelVersionFormat	  "1.%<AutoIncrement:65>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -938,14 +938,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      ToWorkspace
-      VariableName	      "simulink_output"
-      MaxDataPoints	      "1000"
-      Decimation	      "1"
-      SampleTime	      "0"
-      FixptAsFi		      off
-    }
-    Block {
       BlockType		      TransferFcn
       Numerator		      "[1]"
       Denominator	      "[1 2 1]"
@@ -956,7 +948,7 @@ Model {
   }
   System {
     Name		    "helikopter"
-    Location		    [1443, 266, 1870, 503]
+    Location		    [2, 74, 1918, 1019]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -968,7 +960,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "38"
+    ZoomFactor		    "181"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    80
     Block {
@@ -1807,7 +1799,7 @@ Model {
       Name		      "Measurements"
       SID		      65
       Ports		      [3]
-      Position		      [990, 108, 1020, 172]
+      Position		      [940, 113, 970, 177]
       Floating		      off
       Location		      [994, 393, 1822, 839]
       Open		      off
@@ -2002,20 +1994,9 @@ Model {
       BlockType		      ToFile
       Name		      "To File1"
       SID		      73
-      Position		      [990, 215, 1050, 245]
+      Position		      [940, 217, 1045, 243]
       Filename		      "measurements.mat"
       MatrixName	      "measurements"
-    }
-    Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace"
-      SID		      74
-      Ports		      [1]
-      Position		      [990, 320, 1050, 350]
-      VariableName	      "simout_measurements"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      SubSystem
@@ -2201,14 +2182,14 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [0, -5; 10, 0; 0, -15]
+      Points		      [15, 0; 0, -20]
       DstBlock		      "Terminator"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Demux"
       SrcPort		      2
-      Points		      [100, 0]
+      Points		      [95, 0; 0, -35]
       DstBlock		      "Terminator1"
       DstPort		      1
     }
@@ -2217,21 +2198,13 @@ Model {
       SrcPort		      1
       Points		      [0, 0]
       Branch {
-	Points			[0, -160; -845, 0]
+	Points			[0, -150; -845, 0]
 	DstBlock		"Demux"
 	DstPort			1
       }
       Branch {
-	Points			[15, 0; 10, 0]
-	Branch {
-	  DstBlock		  "To File1"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, 105]
-	  DstBlock		  "To Workspace"
-	  DstPort		  1
-	}
+	DstBlock		"To File1"
+	DstPort			1
       }
     }
     Line {
@@ -2289,7 +2262,7 @@ Model {
 	DstPort			5
       }
       Branch {
-	Points			[0, -115]
+	Points			[0, -110]
 	DstBlock		"Measurements"
 	DstPort			3
       }
@@ -2303,7 +2276,7 @@ Model {
 	DstPort			3
       }
       Branch {
-	Points			[0, -75]
+	Points			[0, -70]
 	DstBlock		"Measurements"
 	DstPort			2
       }
@@ -2342,7 +2315,7 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[0, -30]
+	Points			[0, -25]
 	DstBlock		"Measurements"
 	DstPort			1
       }
@@ -2363,21 +2336,21 @@ MatData {
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ "
+    "    &          4    (     0    $    !          D    (         #  0D "
   }
   DataRecord {
     Tag			    DataTag1
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ "
+    "    &          4    (     0    $    !          D    (         #  0D "
   }
   DataRecord {
     Tag			    DataTag0
     Data		    "  %)30     .    0#<   8    (     @         %    \"     $    !     0         %  0 $0    $   !F    :7-?=6"
     "YI<75E          !O;&1?8FQO8VL          &]L9%]N86UE            :7-?;6]D96Q?8VQO<VEN9P!S971T:6YG<P           &ES7V1E"
     ";&5T960            .    ,     8    (    \"0(        %    \"     $    !     0         \"  $  0    X    X    !@    @"
-    "    &          4    (     0    $    !          D    (          3 ?$ .    .     8    (    !          %    \"     $ "
+    "    &          4    (     0    $    !          D    (         #  0D .    .     8    (    !          %    \"     $ "
     "   %     0         0    !0   $A)3\"TQ    #@   #     &    \"     D\"        !0    @    !     0    $          @ !   "
     "    .    <#4   8    (     @         %    \"     $    !     0         %  0 #P    $    M    ;VQD7V)O87)D7W1Y<&4 <3@ "
     "                <30                     #@   #     &    \"     0         !0    @    !     @    $         $  \" '$T"
