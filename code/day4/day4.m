@@ -73,7 +73,7 @@ z0 = [x0 ;
 z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun,options);
 
 % LQR
-Q_LQR = diag([1 1 40 1 1 1]);
+Q_LQR = diag([1 1 1 1 1 1]);
 R_LQR = diag([1 1]);
 [K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 

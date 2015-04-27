@@ -116,9 +116,9 @@ ylabel('Angle [deg]');
 
 % Plot results
 h = figure(1);
-% load ('measurements.mat');
-% save ('../../measurements/day4_openloop/measurements.mat','measurements');
-load('../../measurements/day4_openloop/measurements');
+load ('measurements.mat');
+save ('../../measurements/day4_openloop/measurements.mat','measurements');
+% load('../../measurements/day4_openloop/measurements');
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);

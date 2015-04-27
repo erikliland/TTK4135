@@ -27,8 +27,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "eriklil"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 27 14:01:43 2015"
-  RTWModifiedTimeStamp	  352044101
+  LastModifiedDate	  "Mon Apr 27 16:45:43 2015"
+  RTWModifiedTimeStamp	  352053935
   ModelVersionFormat	  "1.%<AutoIncrement:77>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
@@ -948,7 +948,7 @@ Model {
   }
   System {
     Name		    "helikopter"
-    Location		    [2, 74, 1918, 1019]
+    Location		    [11, 82, 908, 497]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -960,7 +960,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "186"
+    ZoomFactor		    "85"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    110
     Block {
@@ -2345,21 +2345,21 @@ MatData {
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (         #P 0D "
+    "    &          4    (     0    $    !          D    (         #0 0D "
   }
   DataRecord {
     Tag			    DataTag1
     Data		    "  %)30     .    & $   8    (     @         %    \"     $    !     0         %  0 #0    $    G    ;VQD7V"
     "YA;64      &ES7V1E;&5T960   !O8FIE8W1?8FQO8VL   X    X    !@    @    $          4    (     0    4    !         !  "
     "   %    2$E,+3$    .    ,     8    (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @"
-    "    &          4    (     0    $    !          D    (         #P 0D "
+    "    &          4    (     0    $    !          D    (         #0 0D "
   }
   DataRecord {
     Tag			    DataTag0
     Data		    "  %)30     .    0#<   8    (     @         %    \"     $    !     0         %  0 $0    $   !F    :7-?=6"
     "YI<75E          !O;&1?8FQO8VL          &]L9%]N86UE            :7-?;6]D96Q?8VQO<VEN9P!S971T:6YG<P           &ES7V1E"
     ";&5T960            .    ,     8    (    \"0(        %    \"     $    !     0         \"  $  0    X    X    !@    @"
-    "    &          4    (     0    $    !          D    (         #P 0D .    .     8    (    !          %    \"     $ "
+    "    &          4    (     0    $    !          D    (         #0 0D .    .     8    (    !          %    \"     $ "
     "   %     0         0    !0   $A)3\"TQ    #@   #     &    \"     D\"        !0    @    !     0    $          @ !   "
     "    .    <#4   8    (     @         %    \"     $    !     0         %  0 #P    $    M    ;VQD7V)O87)D7W1Y<&4 <3@ "
     "                <30                     #@   #     &    \"     0         !0    @    !     @    $         $  \" '$T"
