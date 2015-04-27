@@ -7,3 +7,7 @@
 slprj/
 helikopter_quarc_windows/
 *.rt-windows
+
+*.gz
+
+*.synctex
