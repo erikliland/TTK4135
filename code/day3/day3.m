@@ -54,7 +54,7 @@ z = quadprog(H, f, [], [], Aeq, Beq, lb, ub);
 u = z(N*nx+1:n);
 
 % LQR
-Q_LQR = diag([1 1 10 1]);
+Q_LQR = diag([1 1 1 1]);
 R_LQR = eye(nu);
 [K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 
@@ -92,9 +92,9 @@ xlabel('Time [s]');
 ylabel('Angle [deg]');
 title(sprintf('Simulation of system over %d-length horizon', N));
 % Plot results
-%load ('measurements.mat');
-%save (sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'measurements');
-load( sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)));
+load  ('measurements.mat');
+save (sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'measurements');
+% load( sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)));
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
