@@ -69,7 +69,8 @@ final_u = [0 final_e+0.1]';
 z0 = [x0 ; 
       repmat(final_x, N-1, 1);
       repmat(final_u, N, 1)];
-z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun);
+options = optimset('Algorithm','sqp');
+z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun,options);
 
 % Create Simulink inputs
 t = (0:N+2*n_offset-1) * h;
@@ -89,7 +90,7 @@ x_star(n_offset+1:N+n_offset, 5) = z(4:nx:N*nx);
 x_star(n_offset+1:N+n_offset, 6) = z(5:nx:N*nx);
 x_star(n_offset+1:N+n_offset, 7) = z(6:nx:N*nx);
 
-% Plot simulated trajectory and input
+%% Plot simulated trajectory and input
 sim_travel = z(1:nx:N*nx);
 sim_elev   = z(5:nx:N*nx);
 pitch_ref  = z(N*nx+1:nu:N*(nx+nu));
@@ -113,10 +114,11 @@ xlabel('Time [s]');
 ylabel('Angle [deg]');
 
 
-%% Plot results
-figure(1);
-load ('measurements.mat');
-save (sprintf('../../measurements/day4_openloop/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
+% Plot results
+h = figure(1);
+% load ('measurements.mat');
+% save ('../../measurements/day4_openloop/measurements.mat','measurements');
+load('../../measurements/day4_openloop/measurements');
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
@@ -134,3 +136,5 @@ subplot(2,1,2);
 hold all;
 plot(t_real,elevation, 'LineWidth', 2,'LineStyle','--');
 legend('Opt elev traj', 'Opt elev ref', 'Constraint','Real elevation');
+saveas(h,'../../figures/day4_ol/plot','epsc');
+

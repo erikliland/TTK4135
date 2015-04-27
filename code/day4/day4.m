@@ -73,7 +73,7 @@ z0 = [x0 ;
 z = fmincon(f, z0, [], [], Aeq, Beq, lb, ub, @confun,options);
 
 % LQR
-Q_LQR = diag([20 1 1 1 30 10]);
+Q_LQR = diag([1 1 40 1 1 1]);
 R_LQR = diag([1 1]);
 [K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 
@@ -95,7 +95,7 @@ x_star(n_offset+1:N+n_offset, 5) = z(4:nx:N*nx);
 x_star(n_offset+1:N+n_offset, 6) = z(5:nx:N*nx);
 x_star(n_offset+1:N+n_offset, 7) = z(6:nx:N*nx);
 
-% Plot simulated trajectory and input
+%% Plot simulated trajectory and input
 sim_travel = z(1:nx:N*nx);
 sim_elev   = z(5:nx:N*nx);
 pitch_ref  = z(N*nx+1:nu:N*(nx+nu));
@@ -118,13 +118,14 @@ legend('x_e^*', 'u_e^*', 'Constraint');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 
-
-%% Plot results
-figure(1);
+% Plot results
+h = figure(1);
 load ('measurements.mat');
 load ('inputs.mat');
-save (sprintf('../../measurements/day4/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
-save (sprintf('../../measurements/day4/inputs_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)), 'simout_measurements');
+save (sprintf('../../measurements/day4/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)),'measurements');
+save (sprintf('../../measurements/day4/inputs_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)),'inputs');
+% load(sprintf('../../measurements/day4/measurements_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)));
+% load(sprintf('../../measurements/day4/inputs_q_%d_%d_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)));
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 elevation = (180/pi)*measurements(6,:);
@@ -144,3 +145,4 @@ hold all;
 plot(t_real,elevation, 'LineWidth', 2,'LineStyle','--');
 % plot(t_real,elevationInput, 'LineWidth', 2,'LineStyle','--');
 legend('x_e^*','u_e^*','Constraint','x_e');
+saveas(h, sprintf('../../figures/day4_cl/plot_q_%d_%d_%d_%d_%d_%d', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4), Q_LQR(5,5), Q_LQR(6,6)),'epsc');
