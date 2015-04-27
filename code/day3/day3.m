@@ -54,7 +54,7 @@ z = quadprog(H, f, [], [], Aeq, Beq, lb, ub);
 u = z(N*nx+1:n);
 
 % LQR
-Q_LQR = diag([1 1 1 1]);
+Q_LQR = diag([1 1 10 1]);
 R_LQR = eye(nu);
 [K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 
@@ -73,11 +73,11 @@ x_star(n_offset+1:N+n_offset, 4) = z(3:4:N*nx);
 x_star(n_offset+1:N+n_offset, 5) = z(4:4:N*nx);
 
 %% Plot simulated system
-figure(1); clf(1);
+fig = figure(1); 
+clf(1);
 sim_travel = z(1:nx:N*nx);
 sim_pitch  = z(3:nx:N*nx);
 hold all;
-axis square;
 box  on;
 plot(t, (180/pi)*x_star(:, 2), 'LineWidth', 2);
 % plot(t, (180/pi)*x_star(:, 4), 'LineWidth', 2);
@@ -91,12 +91,10 @@ xlim([0 (N+2*n_offset)*h]);
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 title(sprintf('Simulation of system over %d-length horizon', N));
-
 % Plot results
-h = figure(1);
-load ('measurements.mat');
-save (sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'measurements');
-% load( sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)) );
+%load ('measurements.mat');
+%save (sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)), 'measurements');
+load( sprintf('../../measurements/day3/measurements_q_%d_%d_%d_%d.mat', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)));
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
@@ -105,7 +103,10 @@ plot(t_real, pitch, 'LineWidth', 2, 'LineStyle', '--');
 legend('Opt travel ref', 'Opt pitch ref','Real Travel', 'Real Pitch');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
-title('Simulated optimal trajectory without feedback');
-axis square;
+title('Simulated optimal trajectory without feedback')
 box  on;
-saveas(h, sprintf('../../figures/day3/plot_q_%d_%d_%d_%d', Q_LQR(1,1), Q_LQR(2,2), Q_LQR(3,3), Q_LQR(4,4)),'epsc');
+
+% Set the dimensions of the figure
+set(fig, 'units','centimeters');
+pos = get(gcf, 'position');
+set(gcf, 'position', [pos(1), pos(2), 15, 9]);
