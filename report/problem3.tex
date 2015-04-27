@@ -5,28 +5,34 @@ This problem involves implementing an LQ controller for optimal control with fee
 For calculating the gain matrix K we needed to use the matlab function dlqr, which is a linear-quadratic regulator design that minimiizes the cost function: 
 \begin{equation}  
 J = Sum {x'Qx + u'Ru + 2*x'Nu} 
-/end{equation}. 
+\end{equation}. 
 This function depend on the system matrices A and B aswell as Q and R, which we will need to choose an appropriate weight on. At first we choose Q and R as:
 
 \begin{equation}
+\bold{Q} = 
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 1 }
-\end{bmatrix}}_{Q}\qquad\boldR= 1
-\end{equation}.
+0 & 0 & 0 & 1 
+\end{bmatrix}
+\qquad\bold{R}=
+\begin{bmatrix}
+1
+\end{bmatrix}
+\end{equation}
 
  By trial and error we got the best result by penalizing the state for travel a lot more than the pitch. This gave us a new Q matrix on the form:
 
 \begin{equation}
+\bold{Q} = 
 \begin{bmatrix}
 50 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 1 }
-\end{bmatrix}}_{Q}
-\end{equation}.
+0 & 0 & 0 & 1
+\end{bmatrix}
+\end{equation}
 
 \subsection{Implementing feedback on the helicopter}
 An implementation of feedback can be seen on the simulink diagram.
