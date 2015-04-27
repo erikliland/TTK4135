@@ -38,6 +38,13 @@ This function depend on the system matrices A and B aswell as Q and R, which we 
 An implementation of feedback can be seen on the simulink diagram.
 
 %Figure of simulink model with feedback 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width = \textwidth]{figures/day3_mdl}
+	\caption{Simulink model with feedback}
+	\label{fig:day3_mdl}
+\end{figure}
+
 By using the gain matrix K calculated in last task, we see that by penalizing travel hard and pitch soft, the helicopter follows the travel trajectory closer than when weighting all states the same.
 %Figure of helicopter response for Q_LQR = diag[50 1 1 1]
 
