@@ -40,16 +40,28 @@ An implementation of feedback can be seen on the simulink diagram.
 %Figure of simulink model with feedback
 \begin{figure}[htb]
 	\centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/day3_mdl}}
+   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/day3_mdl}}
 	\caption{Simulink model with feedback}
 	\label{fig:day3_mdl}
 \end{figure}
 
 By using the gain matrix K calculated in last task, we see that by penalizing travel hard and pitch soft, the helicopter follows the travel trajectory closer than when weighting all states the same.
 %Figure of helicopter response for Q_LQR = diag[50 1 1 1]
+\begin{figure}[htb]
+	\centering
+    	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/plot_day3_q_50_1_1_1}}
+	\caption{Plot of day 3 with Q = diag(50 1 1 1 )}
+	\label{fig:day3_plot_50_1_1_1}
+\end{figure}
 
 We also tried penalizing the pitch more than travel, which gave us a bad result. This because the optimal pitch reference trajectory is based on a bad model.
 %Figure of helicopter response for Q_LQR = diag[1 1 10 1]
+\begin{figure}[htb]
+	\centering
+    	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/plot_day3_q_1_1_10_1}}
+	\caption{Plot of day 3 with Q = diag(1 1 10 1 )}
+	\label{fig:day3_plot_1_1_10_1}
+\end{figure}
 
 \subsection{Comparison between LQR and MPC}
 The way to implement an MPC controller would be to use the same procedure as for the LQR, but for every time step. Then using the first time step as the input u.

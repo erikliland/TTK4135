@@ -79,6 +79,12 @@ it was appropriate to weight deviation(s) in travel (and here also elevation) mo
 
 One thing worth noticing is that the trajectory of elevation consequently falls below the constraint at the peak of the constraint. We believe this is due to the fact that our model suggests that there is no link between the model for elevation, and that of pitch. They are in fact linked, and because of this, the regulator doesn't manage to meet both demands perfectly at the same time, and we get a deviation. If the model would include this crossing terms, the result would probably be better. The problem with this approach is that it leads to a non linear objective function, which takes longer time to compute.
 % TODO: Add figure showing the helicopter following the non-linear constraint. Showing the associated input. Explain why the input looks like it does.
+\begin{figure}[htb]
+	\centering
+   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_30_10}}
+	\caption{Plot day 4 closed loop Q=diag(20 1 1 1 30 10)}
+	\label{fig:day4_cl_plot_20_1_1_1_30_10}
+\end{figure}
 
 % Notation:
 % x_e^*: Computed elevation trajectory
@@ -93,3 +99,9 @@ One thing worth noticing is that the trajectory of elevation consequently falls 
 % Grunnen til dette tror vi er fordi det er en tradeoff i virkeligheten mellom å følge travel-banen og humpen. For å følge humpen bedre, så brukes pitch på en slik måte at det blir større avvik fra travel-banen. I modellen antas at pitch og elevation er fullstendig separerte, og dette problemet skal i teorien ikke oppstå. Men i virkeligheten er det en kobling.
 
 % TODO: Forklar dette fenomenet. Referér til figuren, ved hump-toppen.
+\begin{figure}[htb]
+	\centering
+   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_20_1_marked2}}
+	\caption{Coupling between pitch and elevation}
+	\label{fig:coupling_pitch_elev}
+\end{figure}
