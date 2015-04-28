@@ -91,16 +91,18 @@ x_star(n_offset+1:N+n_offset, 6) = z(5:nx:N*nx);
 x_star(n_offset+1:N+n_offset, 7) = z(6:nx:N*nx);
 
 %% Plot simulated trajectory and input
+fig = figure(1); clf(1);
+set(gca,'FontSize',11)
+
+subplot(2,1,1);
+hold all;
 sim_travel = z(1:nx:N*nx);
 sim_elev   = z(5:nx:N*nx);
 pitch_ref  = z(N*nx+1:nu:N*(nx+nu));
 elev_ref   = z(N*nx+2:nu:N*(nx+nu));
-figure(1); clf(1);
-subplot(2,1,1);
-hold all;
 plot(t, x_star(:,2)*180/pi, 'LineWidth', 2);
 plot(t, u_star(:,2)*180/pi,  'LineWidth', 2);
-legend('Travel', 'Pitch setpoint');
+legend('Opt travel traj', 'Opt pitch ref');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 subplot(2,1,2);
@@ -109,32 +111,43 @@ c = alpha*exp(-beta*(sim_travel-travel_t).^2);
 plot(t, x_star(:,6)*180/pi,   'LineWidth', 2);
 plot(t, u_star(:,3)*180/pi,   'LineWidth', 2);
 plot(t, [zeros(n_offset,1); c*180/pi; zeros(n_offset,1)], '--', 'LineWidth', 2);
-legend('Elevation', 'Elevation setpoint', 'Constraint');
+legend('Opt elev traj', 'Opt elev ref', 'Constraint');
 xlabel('Time [s]');
 ylabel('Angle [deg]');
 
-
 % Plot results
-h = figure(1);
-load ('measurements.mat');
-save ('../../measurements/day4_openloop/measurements.mat','measurements');
-% load('../../measurements/day4_openloop/measurements');
+%load ('measurements.mat');
+%save ('../../measurements/day4_openloop/measurements.mat','measurements');
+load('../../measurements/day4_openloop/measurements');
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
 elevation = (180/pi)*measurements(6,:);
+
 subplot(2,1,1);
 hold all;
 plot(t_real,travel, 'LineWidth', 2,'LineStyle','--');
 plot(t_real, pitch, 'LineWidth', 2, 'LineStyle', '--');
 legend('Opt travel traj', 'Opt pitch ref','Real Travel', 'Real Pitch');
-xlabel('Time [s]');
-ylabel('Angle [deg]');
-title('Simulated optimal trajectory without feedback');
+title('Simulated optimal trajectory without feedback','FontSize',14,'FontWeight','normal');
+line([offsetTime offsetTime],get(gca,'YLim'),'Color','Black','LineWidth',1);
+line([offsetTime+N*h offsetTime+N*h],get(gca,'YLim'),'Color','Black','LineWidth',1);
+xlim([4 (N+2*n_offset)*h]);
+ylim([-140 205]);
 
 subplot(2,1,2);
 hold all;
 plot(t_real,elevation, 'LineWidth', 2,'LineStyle','--');
 legend('Opt elev traj', 'Opt elev ref', 'Constraint','Real elevation');
-saveas(h,'../../figures/day4_ol/plot','epsc');
+line([offsetTime offsetTime],get(gca,'YLim'),'Color','Black','LineWidth',1);
+line([offsetTime+N*h offsetTime+N*h],get(gca,'YLim'),'Color','Black','LineWidth',1);
+xlim([4 (N+2*n_offset)*h]);
+ylim([-5 14]);
+
+% Set the dimensions of the figure
+set(fig, 'units','centimeters');
+pos = get(gcf, 'position');
+set(gcf, 'position', [pos(1), pos(2), 15, 12]);
+
+%saveas(h,'../../figures/day4_ol/plot','epsc');
 
