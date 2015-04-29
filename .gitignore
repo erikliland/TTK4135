@@ -41,3 +41,9 @@ report/lab_report.toc
 *.fdb_latexmk
 
 *.toc
+
+report/lab_report.toc
+
+report/lab_report.bbl
+
+report/lab_report.toc
