@@ -9,7 +9,7 @@ J = Sum {x'Qx + u'Ru + 2*x'Nu}
 This function depend on the system matrices A and B aswell as Q and R, which we will need to choose an appropriate weight on. At first we choose Q and R as:
 
 \begin{equation}
-\bold{Q} =
+\mathbf{Q} =
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
@@ -25,7 +25,7 @@ This function depend on the system matrices A and B aswell as Q and R, which we 
  By trial and error we got the best result by penalizing the state for travel a lot more than the pitch. This gave us a new Q matrix on the form:
 
 \begin{equation}
-\bold{Q} =
+\mathbf{Q} =
 \begin{bmatrix}
 50 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
