@@ -31,3 +31,13 @@ report/TSWLatexianTemp_000046.pdf
 report/lab_report.toc
 
 *.m~
+
+*.bbl
+
+*.bbl
+
+*.blg
+
+*.fdb_latexmk
+
+*.toc
