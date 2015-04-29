@@ -61,8 +61,9 @@ for all timesteps $k$ over the solution horizon. Since this is a non-linear cons
 For this assignment, the cost function was the same as in equation (\ref{eq:trajectory_cost}), but with an extra term for penalizing elevation. We chose to set up the cost function on a more general form:
 \begin{equation}
     \phi=\sum(x^{T}Q_{LQR}x+u^{T}R_{LQR}u)
+    \label{eq:day4_cost}
 \end{equation}
-Here, $Q_{LQR}$ and $R{LQR}$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{pitch}$ and $r_{elevation}$, so that it corresponds with the extended state and input vectors (\ref{eq:}). %vil her ha label på inlinefuncen lenger oppe.
+Here, $Q_{LQR}$ and $R_{LQR}$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{pitch}$ and $r_{elevation}$, so that it corresponds with the extended state and input vectors (\ref{eq:day4_cost}). %denne ligningen?
 
 %This formulation makes it possible to easily put some weight on the other states as well, if deviation in these states should be penalized.
 
