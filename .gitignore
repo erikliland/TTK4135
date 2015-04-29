@@ -16,12 +16,6 @@ helikopter_quarc_windows/
 
 *.gz(busy)
 
-*.toc
-
-*.toc
-
-*.toc
-
 report/TSWLatexianTemp_lab_report.tex
 
 report/TSWLatexianTemp_000046.tex
@@ -39,8 +33,6 @@ report/lab_report.toc
 *.blg
 
 *.fdb_latexmk
-
-*.toc
 
 report/lab_report.toc
 
