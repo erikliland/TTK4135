@@ -11,7 +11,7 @@
 *.bbl
 *.blg
 *.fdb_latexmk
-
+report/lab_report.pdf
 report/lab_report.toc
 
 report/lab_report.toc
