@@ -1,7 +1,6 @@
 \section{Optimal Control of Pitch and Travel without Feedback}\label{sec:prob2}
 
-In this section an optimal trajectory $x^*$ and a corresponding input sequence $u^*$ was calculated. The trajectory should bring the helicopter from an initial state to another predefined state. No feedback was used to correct for deviations from the calculated trajectory. Also, elevation was disregarded, that is, $e=0$ was assumed for this part. The computation of the optimal trajectory was formulated as a discrete convex optimization problem.
-
+In this section we compute an optimal trajectory $x^*$ and a corresponding input sequence $u^*$. The trajectory should bring the helicopter from an initial state to another predefined state. We do not use feedback to correct for deviations from the calculated trajectory. Furthermore, we disregard elevation, that is, we assume $e=0$. The computation of the optimal trajectory was formulated as a convex optimization problem.
 
 \subsection{The helicopter model on continuous-time state-space form}
 
@@ -115,7 +114,7 @@ the input relative to the state deviations using the weight parameter $q$. The t
 
 \subsection{Implementation}
 
-Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes were added on both sides of the input sequence to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state. 
+Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes were added on both sides of the input sequence to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state.
 
 \begin{figure}[htb]
 	\centering
