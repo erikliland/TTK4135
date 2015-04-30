@@ -18,14 +18,14 @@ The block diagram structure of the helicopter with feedback can be seen in figur
 	\label{fig:day3_mdl}
 \end{figure}
 
-By keeping R constant at unity weight and tuning Q, we saw that by weighting travel more than pitch (50 1 1 1), the helicopter followed the travel trajectory closer than when weighting all states the same. Weighting deviation in pitch more than travel (1 1 10 1) gave a bad result. Figure (\ref{fig:day3_plot_1_1_10_1}) shows how the trajectory based on these different weights turned out compared to the mathematical optimal path. The reason for this was that the optimal pitch reference trajectory was based on a linearized model.
+By keeping R constant at unity weight and tuning Q, we saw that by weighting travel more than pitch (50 1 1 1), the helicopter followed the travel trajectory closer than when weighting all states the same. Weighting deviation in pitch more than travel (1 1 10 1) gave a bad result. Figure (\ref{fig:day3_plot_allQ}) shows how the trajectory based on these different weights turned out compared to the mathematical optimal path. The reason for this was that the optimal pitch reference trajectory was based on a linearized model.
 %HER MÅ VI HA ET SAMMENLIGNINGSPLOT MELLOM 1 1 1 1, 1 1 10 1 og 50 1 1 1 istedenfor de to under
 %Figure of helicopter response for Q_LQR = diag[50 1 1 1]
 \begin{figure}[htb]
 	\centering
-    	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/plot_day3_q_50_1_1_1}}
-	\caption{Plot of day 3 with Q = diag(50 1 1 1 )}
-	\label{fig:day3_plot_50_1_1_1}
+    	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/plot_day3_allQ}}
+	\caption{Plot of day 3 with differently tuned Q}
+	\label{fig:day3_allQ}
 \end{figure}
 
 
