@@ -1,6 +1,6 @@
 \section{Discussion}\label{sec:discussion}
 \subsection{Optimal control without feedback}
-When controlling the helicopter with only the estimated optimal input sequence, the linearization and modeling errors becomes to large, and the helicopters behavior will deviate drastically from the estimated response. However, there is one benefit from using optimal control without feedback; the ability to limit inputs. So if the system need optimal control with limits on states and inputs, and also need feedback, MPC is the way to go. See section under.
+When controlling the helicopter with only the estimated optimal input sequence, the linearization and modeling errors becomes too large, and the helicopters behavior will deviate drastically from the estimated response. However, there is one benefit from using optimal control without feedback; the ability to limit inputs. So if the system need optimal control with limits on states and inputs, and also need feedback, MPC is the way to go. See section under.
 
 \subsection{Optimal control with feedback}
 While the open-loop configuration of optimal control was quite poor, the closed-loop configuration with a LQR was quite promising. Our testing showed that the optimal state trajectory was much more useful than the optimal input sequence. With a LQR this could be achieved by weighting the error in travel and pitch quite much. This way the regulator acts like a compensator on modeling errors since its additive with the optimal input sequence.
