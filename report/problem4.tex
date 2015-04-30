@@ -4,12 +4,12 @@ rate, $\dot{e}$. We use a non-linear solver to compute an optimal trajectory in 
 and additionally constrain the elevation to avoid a restriction shaped as a bell-curve.
 
 \subsection{State-space formulation}
-The state-vector is extended with the remaining states, 
+The state-vector is extended with the remaining states,
 \begin{equation}
 \label{eq:day4_cost}
-    x = \begin{bmatrix} \lambda & r & p & \dot{p} & e & \dot{e} \end{bmatrix}^T, 
+    x = \begin{bmatrix} \lambda & r & p & \dot{p} & e & \dot{e} \end{bmatrix}^T,
 \end{equation}
-and the input-vector also contains the elevation setpoint fed to the internal controller, 
+and the input-vector also contains the elevation setpoint fed to the internal controller,
 \begin{equation}
     u = \begin{bmatrix} p_c & e_c \end{bmatrix}^T.
 \end{equation}
@@ -70,7 +70,6 @@ for all timesteps $k$ over the solution horizon. Since this is a non-linear cons
 For this assignment, the cost function was the same as in equation (\ref{eq:trajectory_cost}), but with an extra term for penalizing elevation. We chose to set up the cost function on a more general form:
 \begin{equation}
     \phi=\sum(x^{T}Q_{LQR}x+u^{T}R_{LQR}u)
-    
 \end{equation}
 Here, $Q_{LQR}$ and $R_{LQR}$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{pitch}$ and $r_{elevation}$, so that it corresponds with the extended state and input vectors (\ref{eq:day4_cost}). %denne ligningen?
 
