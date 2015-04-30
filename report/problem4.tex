@@ -49,7 +49,7 @@ We discretize (\ref{eq:extended_state_space}) using the same method as in sectio
 where $I$ is the $6\times6$ identity matrix.
 
 \subsection{Modelling the restriction}
-A common application of optimal control is to implement restrictions, such as avoiding physical objects or as constraints in the optimization problem. Such restrictions can not be enforced when using only state feedback controllers. We wished to restrict the helicopter head to move above the bell-shaped curve
+A common reason for using optimal control is to implement restrictions, such as avoiding physical objects or as constraints in the optimization problem. Such restrictions can not be enforced when using only state feedback controllers. We wish to restrict the helicopter head to move above the bell-shaped curve
 \begin{equation}
     e_k \geq \alpha \exp (-\beta (\lambda_k - \lambda_t)^2 )
 \end{equation}
