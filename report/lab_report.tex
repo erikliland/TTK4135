@@ -1,5 +1,22 @@
 \documentclass[11pt,a4paper,USenglish]{article}
 \usepackage{ttk4135LabReport}
+
+\usepackage{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[round]{natbib}
+\usepackage{tocbibind}
+\usepackage[thinspace,amssymb]{SIunits}
+\usepackage{listings, courier, color}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{libertine}
+\usepackage{fancyref}
+\usepackage{newtxmath}
+\usepackage[T1]{fontenc}
+
 \graphicspath{{../}}
 \lstset{inputpath={../}}
 \usepackage[hidelinks]{hyperref} % Always load last
@@ -21,9 +38,11 @@
 \include{problem4}
 \include{discussion}
 \include{conclusion}
+
 \appendix
 \include{matlab}
 \include{simulink}
+
 \clearpage
 \bibliographystyle{apalike}
 \bibliography{helibib}\label{sec:bibliography}
