@@ -2,7 +2,6 @@
 *.out
 *.log
 *.asv
-*lab_report.pdf
 *.rt-windows
 *.gz
 *.synctex

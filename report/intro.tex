@@ -1,17 +1,21 @@
 \section{Intro}
-\subsection{Modeling, linearization}
-On this project we will be using optimization theory to control a model of a helicopter. This is done by:
- making a non-linear model of the helicopter, and the linearize it at an equilibrium. This method is widely used in control theory and works well if the system operates near or at the equilibrium or have quite small non-linearities. However when this is not the case, a linearized model may not be adequate for stabilizing and controlling the system.
-
- The reason most control engineers prefer linear model is the ability to analyze them and tune regulators. In this project we linearize one time manually around an equilibrium, but there is no limitations on the number of times the model can be linearized and the process can be done automatically by a computer. More about this in the last section.
+\subsection{Modelling and linearization}
+In this lab we will be using optimization theory to compute an optimal trajectory, with a corresponding input, for a small helicopter. We do this by deriving a non-linear model for
+the system dynamics, and linearizing around an equilibrium. This method is widely used in
+control theory and works well if the system operates close to the linearization point. We linearize once about a fixed equilibrium, but a possibility is to redo the linearization as new measurements of the system are made.
 
 \subsection{Optimal control, limitations without feedback}
-Optimization theory is a knowledge used in many applications, from economy and production planing to control theory. In this project we will be looking at the last application, and how it can be used to solve control theory problems. The main difference between a conventional regulator who only uses the current state or output and a reference and a trajectory from an optimization over a horizon is the ability to "look into the future". 
+Optimization theory is used in many applications, from economy and production planning to control theory. In this lab we will be looking at the last application, and how it can be used to solve control theory problems. The main difference between optimal control and a conventional error-feedback controller, is the ability to ``look into the future'', as opposed to only using the current state.
 
-While a conventional regulator will calculate an error and correct the input thereafter, a planned trajectory from an optimization problem will contain inputs for the complete horizon. However, there can be quite drastic drawbacks with implementing this optimal sequence of inputs directly to the system since there are no feedback, any error caused by modeling errors and disturbances will accumulate and often cause drift and maybe instability.
+While a conventional regulator will calculate an error and correct the input thereafter, a planned trajectory from an optimization problem will contain inputs for the complete horizon. However, straightforward application of the optimal input sequence will rarely give a good result, as modelling errors will cause the system to deviate from the optimal trajectory.
 
-\subsection{Optimal control, trust the trajectory not the input}
-However, while the optimal sequence of inputs may not be perfect in open-loop, the planned trajectory for the states are often quite useful, even if the model have errors. Here it is possible to implement a traditional PID regulator, or as we will be doing in this project, implement a linear quadratic regulator (LQR). 
+\subsection{Optimal control with feedback}
+To compensate for modelling errors, it is useful to include some form of output feedback to correct
+the system towards to the planned trajectory. In this lab we use a linear-quadratic regulator, that
+weights the error between the measured state and the trajectory.
+
+It is possible to implement this using traditional PID regulators, or a linear-quadratic regulator
+However, while the optimal sequence of inputs may not be perfect in open-loop, the planned trajectory for the states are often quite useful, even if the model have errors. Here it is possible to implement a traditional PID regulator, or as we will be doing in this project, implement a linear quadratic regulator (LQR).
 
 The LQR can be both time variant and time invariant, dictated by the nature of the system. As mentioned in the linearizion part, the calculation of the LQR gain can and will be done by a computer, and will often be recalculated when re-linearizing. By tuning the LQR so that it prioritize to follow the trajectory of the states rather than following the optimal input, it is possible to compensate for modeling errors.
 
