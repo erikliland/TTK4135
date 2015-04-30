@@ -107,13 +107,7 @@ for $t = 0...N-1$. Applying these constraints to all states and inputs in the so
 	\end{bmatrix}_{t=0..N-1}
 \end{equation}
 
-which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$. The calculated input sequences with weights $q =$ 0.1, 1 and 10 are shown in figures ...................
-
-
-
-TODO: Comment the results with respect to the different weights chosen.
-
-
+Which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$. Solving the optimization problem with different weights $q$ did not lead to any significant differences in the trajectory because the model inaccuracies made the helicopter drift away from the desired state anyway.
 
 The objective function (\ref{eq:trajectory_cost}) weigths the input relative to the state deviations using the weigth parameter $q$. The term $(\lambda_i - \lambda_f)^2$ is the state deviations. They are squared to priotitize the largest deviations. Note that the cost function (\ref{eq:trajectory_cost}) does not take into consideration that $\lambda_i$ plus some multiple of $2\pi$ describes the same physical orientation of the helicopter. For example, if the reference is $0$ and $\lambda_i = 2\pi$, it will be regarded as a large error, even though the helicopter is infact in the desired orientation. A more optimal scheme would take this into consideration.
 
