@@ -107,4 +107,4 @@ We solved the optimization problem using the built-in MATLAB function \texttt{qu
 
 Figure (\ref{fig:day2_plot}) shows the measured trajectories for travel and pitch, using $q = 1$. We see that the helicopter did not reach the planned final state, even though the pitch matched fairly well with the optimal setpoint. Selecting different values of $q$ did not lead to any significant improvements, and the helicopter still deviated heavily from the planned trajectory.
 
-The biggest cause for this is the lack of feedback. Modelling inaccuracies, disturbances, and linearization errors all contribute to the computed input being unfit for the real system. Since constructing a perfect model is unrealistic, feedback will be necessary compensate for such errors.
+The biggest cause for this is the lack of feedback. Modelling inaccuracies, disturbances, and linearization errors all contribute to the computed input being unfit for the real system. Since constructing a perfect model is unrealistic, feedback will be necessary to compensate for such errors.
