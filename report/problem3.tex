@@ -1,12 +1,13 @@
 \section{Optimal Control of Pitch and Travel with Feedback (LQ)}\label{sec:prob3}
-This problem involves implementing an LQ controller for optimal control with feedback. We will calculate a gain matrix K using the LQ controller, implement feedback on the helicopter, and look into if MPC is a good alternative to LQ.
+This problem involves implementing an LQ controller for optimal control with feedback. We calculated a gain matrix K using the discrete algebraic riccati equation solver dlqr, implemented feedback on the helicopter, and discussed if MPC is a good alternative to LQR.
 
 \subsection{Calculating the gain matrix K}
-For calculating the gain matrix K we needed to use the matlab function dlqr, which is a linear-quadratic regulator design that minimiizes the cost function:
+Feedback for the system is introduced by using $u_k=u_k^*-K^T(x_k-x_k^*)$. Here $x*$ is the optimal trajectory and $u*$ is the optimal input sequence. A good choice for K was found by minimizing the objective function:
 \begin{equation}
-J = \sum {x^TQx + u^TRu + 2*x^TNu}
-\end{equation}.
-This function depend on the system matrices A and B aswell as Q and R, which we will need to choose an appropriate weight on. At first we choose Q and R as:
+J = \sum_{i=0}^\infty {\Delta x_{i+1}^TQ\Delta x_{i+1} + u_{i}^TRu_{i}}
+\end{equation}
+We used the built in MATLAB function dlqr to solve the riccati equation for the corresponding optimization problem and to compute the gain matrix K. 
+This function depend on the system matrices A and B as well as Q and R. At first we chose Q and R to be:
 
 \begin{equation}
 \mathbf{Q} =
@@ -16,13 +17,10 @@ This function depend on the system matrices A and B aswell as Q and R, which we 
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
 \end{bmatrix}
-\qquad\mathbf{R}=
-\begin{bmatrix}
-1
-\end{bmatrix}
+\qquad\mathbf{R}=1
 \end{equation}
 
- By trial and error we got the best result by penalizing the state for travel a lot more than the pitch. This gave us a new Q matrix on the form:
+ By trial and error we got the best result by penalizing deviation in the travel trajectory relatively more than the pitch referance. This gave us a new Q matrix on the form:
 
 \begin{equation}
 \mathbf{Q} =
