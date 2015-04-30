@@ -1,12 +1,7 @@
 \begin{thebibliography}{}
 
-\bibitem[Nocedal and Wright, 2006]{Nocedal2006}
-Nocedal, J. and Wright, S.~J. (2006).
-\newblock {\em {Numerical Optimization}}.
-\newblock Springer, second edition.
-
 \bibitem[Jesmani, 2015]{LabExercise}
-Jesmani, Mansoureh (2015).
-\newblock {\em {TTK4135 Optimization and Control, Helicopter Lab}}.
+Jesmani, M. (2015).
+\newblock Ttk4135 optimization and control, helicopter lab.
 
 \end{thebibliography}
