@@ -11,7 +11,7 @@ While a conventional regulator will calculate an error and correct the input the
 
 \subsection{Optimal control with feedback}
 To compensate for modelling errors, it is useful to include some form of output feedback to correct
-the system towards to the planned trajectory. In this lab we use a linear-quadratic regulator, which minimizes a quadratic criteria given by tuning-friendly weight matrices. As long as the system is following the calculated planned trajectory, the original input sequence is used. If the system deviates from the trajectory, the input will be modified by a feedback term.
+the system towards the planned trajectory. In this lab we use a linear-quadratic regulator, which minimizes a quadratic criteria given by tuning-friendly weight matrices. As long as the system is following the calculated planned trajectory, the original input sequence is used. If the system deviates from the trajectory, the input will be modified by a feedback term.
 
 \subsection{Optimal control with non-linear constraints, and thoughts on MPC}
 A common application of optimal control is to implement constraints on the system state or input.
