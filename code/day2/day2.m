@@ -57,10 +57,12 @@ fig = figure(1); clf(1); box  on;
 set(gca,'FontSize',11)
 sim_travel = z(1:nx:N*nx);
 sim_pitch  = z(3:nx:N*nx);
+sim_travel_w_offset=[ones(n_offset,1)*pi;sim_travel;ones(n_offset,1)*sim_travel(end)];
+sim_pitch_w_offset = [zeros(n_offset,1); sim_pitch ;ones(n_offset,1)*sim_pitch(end)];
 time = (0:N-1+2*n_offset)*h;
 hold all;
-plot(time, (180/pi)*[ones(n_offset,1)*pi ; sim_travel ; ones(n_offset,1)*sim_travel(end)], 'LineWidth', 2);
-plot(time, (180/pi)*[zeros(n_offset,1) ; sim_pitch ; ones(n_offset,1)*sim_pitch(end)], 'LineWidth', 2);
+plot(time,(180/pi)*sim_travel_w_offset,'LineWidth',2);
+plot(time,(180/pi)*sim_pitch_w_offset,'LineWidth',2);
 legend('Sim Travel', 'Sim Pitch');
 
 % Plot results
