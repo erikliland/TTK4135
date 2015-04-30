@@ -1,6 +1,0 @@
-# PCTeX Project File, Version 1.1
-	name: lab_report
-	texformat: latex
-	typesetmode: PDF
-	spellwordlist: american
-lab_report.tex

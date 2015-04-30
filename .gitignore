@@ -3,38 +3,25 @@
 *.log
 *.asv
 *lab_report.pdf
-slprj/
-helikopter_quarc_windows/
 *.rt-windows
-
 *.gz
-
 *.synctex
-
 *.toc
-
 *.gz(busy)
-
-report/TSWLatexianTemp_lab_report.tex
-
-report/TSWLatexianTemp_000046.tex
-
-report/TSWLatexianTemp_000046.pdf
+*.m~
+*.bbl
+*.blg
+*.fdb_latexmk
 
 report/lab_report.toc
-
-*.m~
-
-*.bbl
-
-*.bbl
-
-*.blg
-
-*.fdb_latexmk
 
 report/lab_report.toc
 
 report/lab_report.bbl
 
 report/lab_report.toc
+
+
+slprj/
+
+helikopter_quarc_windows/
