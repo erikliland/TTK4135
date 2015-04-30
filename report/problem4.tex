@@ -1,6 +1,6 @@
 \section{Optimal Control of Pitch, Travel and Elevation with and without Feedback}\label{sec:prob4}
-In this section we extended our model to include the remaining states: elevation, $e$, and elevation
-rate, $\dot{e}$. We used a non-linear solver to compute an optimal trajectory in two dimensions,
+In this section, we extended our model to include the remaining states, elevation $e$, and elevation
+rate $\dot{e}$. We used a non-linear solver to compute an optimal trajectory in two dimensions,
 and additionally constrained the elevation to avoid a restriction shaped as a bell-curve.
 
 \subsection{State-space formulation}
@@ -9,9 +9,9 @@ The state-vector was extended with the remaining states,
 \label{eq:day4_cost}
     x = \begin{bmatrix} \lambda & r & p & \dot{p} & e & \dot{e} \end{bmatrix}^T
 \end{equation}
-and the elevation setpoint was added to the input-vector,
+and the elevation setpoint was added to the input-vector
 \begin{equation}
-    u = \begin{bmatrix} p_c & e_c \end{bmatrix}^T
+    u = \begin{bmatrix} p_c & e_c \end{bmatrix}^T.
 \end{equation}
 The system is on the usual state-space form (\ref{eq:state_space_axbu}),
 with
