@@ -9,13 +9,7 @@ J = \sum_{i=0}^\infty {\Delta x_{i+1}^TQ\Delta x_{i+1} + u_{i}^TRu_{i}}
 Here, Q and R are user defined diagonal matrices chosen to weight deviations in states separately. The tuning of these matrices are discussed in the next section. The built in MATLAB function dlqr is used to solve the riccati equation for the corresponding optimization problem and to compute the gain matrix K. 
 
 \subsection{Implementing feedback on the helicopter}
-The block diagram structure of the helicopter with feedback can be seen in figure (\ref{fig:day3_mdl}).
-\begin{figure}[htb]
-	\centering
-   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day3/day3_mdl}}
-	\caption{Simulink model with feedback}
-	\label{fig:day3_mdl}
-\end{figure}
+The block diagram structure of the helicopter with feedback can be seen in figure (\ref{fig:simulink_day3}).
 
 By keeping R constant at unity weight and tuning Q, we saw that by weighting travel more than pitch (50 1 1 1), the helicopter followed the travel trajectory closer than when weighting all states the same. Weighting deviation in pitch more than travel (1 1 10 1) gave a bad result. Figure (\ref{fig:day3_plot_allQ}) shows how the trajectory based on these different weights turned out compared to the mathematical optimal path. The reason for this was that the optimal pitch reference trajectory was based on a linearized model.
 \begin{figure}[htb]
