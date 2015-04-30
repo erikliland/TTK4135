@@ -53,8 +53,8 @@ pitch_input(:, 1) = t;
 pitch_input(n_offset+1:N+n_offset, 2) = u;
 
 %% Plot simulated system
-fig = figure(1); clf(1); box  on;
-set(gca,'FontSize',11)
+fig = figure(1); clf(1); box on;
+% set(gca,'FontSize',11)
 sim_travel = z(1:nx:N*nx);
 sim_pitch  = z(3:nx:N*nx);
 sim_travel_w_offset=[ones(n_offset,1)*pi;sim_travel;ones(n_offset,1)*sim_travel(end)];
@@ -70,14 +70,19 @@ load ('measurements.mat');
 t_real = measurements(1,:);
 travel = (180/pi)*measurements(2,:);
 pitch = (180/pi)*measurements(4,:);
-plot(t_real,travel, 'LineWidth', 2,'LineStyle','--');
-plot(t_real, pitch, 'LineWidth', 2, 'LineStyle', '--');
-legend('Sim Travel', 'Sim Pitch','Real Travel', 'Real Pitch','Location','North');
-title('Simulated optimal trajectory without feedback', 'FontSize',14,'FontWeight','normal');
+plot(t_real, travel, 'LineWidth', 2);
+plot(t_real, pitch,  'LineWidth', 2);
 xlim([0 (N*h)+2*offsetTime]); ylim([-70 210]);
 line([offsetTime offsetTime],get(gca,'YLim'),'Color','Black','LineWidth',1);
 line([offsetTime+N*h offsetTime+N*h],get(gca,'YLim'),'Color','Black','LineWidth',1);
-xlabel('Time [s]'); ylabel('Agle [deg]');
+
+ylabel('Angle (degrees)', 'Interpreter', 'Latex');
+xlabel('Time (seconds)', 'Interpreter', 'Latex');
+hlegend = legend('$\lambda^*$', '$p^*$', '$\lambda$', 'p', 'Location', 'NE');
+title('Comparison of functions', 'Interpreter', 'Latex');
+
+set(hlegend, 'Interpreter', 'Latex');
+
 set(fig, 'units','centimeters');
 pos = get(gcf, 'position');
 set(gcf, 'position', [pos(1), pos(2), 15, 9]);
