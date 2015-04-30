@@ -7,19 +7,16 @@ control theory and works well if the system operates close to the linearization 
 \subsection{Optimal control, limitations without feedback}
 Optimization theory is used in many applications, from economy and production planning to control theory. In this lab we will be looking at the last application, and how it can be used to solve control theory problems. The main difference between optimal control and a conventional error-feedback controller, is the ability to ``look into the future'', as opposed to only using the current state.
 
-While a conventional regulator will calculate an error and correct the input thereafter, a planned trajectory from an optimization problem will contain inputs for the complete horizon. However, straightforward application of the optimal input sequence will rarely give a good result, as modelling errors will cause the system to deviate from the optimal trajectory.
+While a conventional regulator will calculate an error and correct the input thereafter, a planned trajectory from an optimization problem will contain inputs for the complete horizon. However, straightforward application of the optimal input sequence will rarely give good results, as modelling errors will cause the system to deviate from the optimal trajectory.
 
 \subsection{Optimal control with feedback}
 To compensate for modelling errors, it is useful to include some form of output feedback to correct
-the system towards to the planned trajectory. In this lab we use a linear-quadratic regulator, that
-weights the error between the measured state and the trajectory.
-
-It is possible to implement this using traditional PID regulators, or a linear-quadratic regulator
-However, while the optimal sequence of inputs may not be perfect in open-loop, the planned trajectory for the states are often quite useful, even if the model have errors. Here it is possible to implement a traditional PID regulator, or as we will be doing in this project, implement a linear quadratic regulator (LQR).
-
-The LQR can be both time variant and time invariant, dictated by the nature of the system. As mentioned in the linearization part, the calculation of the LQR gain can and will be done by a computer, and will often be recalculated when re-linearizing. By tuning the LQR so that it prioritize to follow the trajectory of the states rather than following the optimal input, it is possible to compensate for modeling errors.
+the system towards to the planned trajectory. In this lab we use a linear-quadratic regulator, which minimizes a quadratic criteria given by tuning-friendly weight matrices. As long as the system is following the calculated planned trajectory, the original input sequence is used. If the system deviates from the trajectory, the input will be modified by a feedback term.
 
 \subsection{Optimal control with non-linear constraints, and thoughts on MPC}
-When controlling two degrees of freedom with non-linear inequality constraints with optimization theory, the time it takes to solve the optimization problem is quite long. When calculating the trajectory once and then executing the whole horizon this does not become a problem.
+A common application of optimal control is to implement constraints on the system state or input.
+For instance, to avoid an object or limit the usage of motor thrust. Such constraints can be non-linear, which will significantly increase the time it takes to solve the optimization problem.
+This is not a concern if the trajectory is only computed once before running the system.
 
-However when using MPC, which is to recalculate the horizon every time step and only use the first calculated input, this time becomes a problem. This calculation time can be improved by selecting a better solver, increase hardware specifications and do simplifications / linearization. When achieving this on a low-power unit like a micro controller, FPGA, DSP or equivalent, a new world in control theory will open.
+However when using MPC, which recomputes the horizon at each time step as measurements are made, the computation time becomes a problem. While state of the art solvers show promising results, they
+are currently difficult to implement on restrictive hardware, such as low-power microcontrollers.
