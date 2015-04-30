@@ -1,6 +1,8 @@
 \section{Conclusion}\label{sec:conclusion}
+In our project, heavy weighting of the travel relative to pitch and elevation gave the best results. This is because heavy penalizing of the deviation in the travel makes the helicopter quickly move to its desired state.
+
 MPC may seem the best way of controlling a plant such as the helicopter model due to its features and optimality. It is necessary if the possibility to implement nonlinear constraints is needed. However, it is also the most expensive algorithm in terms of computational power needed, and therefore might be considered an overkill in many small systems or systems with lower requirements on optimality.
 
 An LQR is a lot simpler to implement than an MPC, and therefore also cheaper. In the simplest systems, some version of the PID-regulator alone might be more than sufficient. No matter the regulator type, this project proved to us the necessarity of feedback in a control system to correct for model inaccuracies and unsuspected impacts.
 
-In our project, heavy weighting of the travel relative to pitch and elevation gave the best results. This is because heavy penalizing of the deviation in the travel makes the helicopter quickly move to its desired state.
+Also, taking HSE regulations seriously is very important.
