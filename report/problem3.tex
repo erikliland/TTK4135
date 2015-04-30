@@ -4,7 +4,7 @@ This problem involves implementing an LQ controller for optimal control with fee
 \subsection{Calculating the gain matrix K}
 For calculating the gain matrix K we needed to use the matlab function dlqr, which is a linear-quadratic regulator design that minimiizes the cost function:
 \begin{equation}
-J = \sum {x'Qx + u'Ru + 2*x'Nu}
+J = \sum {x^TQx + u^TRu + 2*x^TNu}
 \end{equation}.
 This function depend on the system matrices A and B aswell as Q and R, which we will need to choose an appropriate weight on. At first we choose Q and R as:
 
