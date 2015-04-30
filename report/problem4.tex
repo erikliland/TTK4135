@@ -49,31 +49,35 @@ We discretize (\ref{eq:extended_state_space}) using the same method as in sectio
 where $I$ is the $6\times6$ identity matrix.
 
 \subsection{Modelling the restriction}
-A common reason for using optimal control is to implement restrictions, such as avoiding physical objects or as constraints in the optimization problem. Such restrictions can not be enforced when using only state feedback controllers. We wish to restrict the helicopter head to move above the bell-shaped curve
+A common reason for using optimal control is to implement restrictions on state or input. This can be used to avoid physical objects or conserve input power. Such restrictions can not be enforced when using only state feedback controllers. In this section, we wish to restrict the helicopter head to move above the bell-shaped curve
 \begin{equation}
     e_k \geq \alpha \exp (-\beta (\lambda_k - \lambda_t)^2 )
 \end{equation}
-for all timesteps $k$ of the horizon. Since this is a non-linear constraint, we could no longer use a QP solver. Instead, a non-linear solver is needed, and in this case, the MATLAB function fmincon is used with a SQP-type algorithm.
+for all timesteps $k$ of the horizon. Since this is a non-linear constraint, we can no longer use a linear solver.
 
 \subsection{Objective function}
-For this assignment, the cost function is the same as in equation (\ref{eq:trajectory_cost}), but with an extra term for penalizing elevation. We chose to set up the cost function on a more general form:
-\begin{equation}
-    \phi=\sum(x^{T}Qx+u^{T}Ru)
-\end{equation}
-Here, $Q$ and $R$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{pitch}$ and $r_{elevation}$, so that it corresponds with the extended state and input vectors (\ref{eq:day4_cost}). This formulation makes it possible to easily put some weight on the other states as well, if deviation in these states should be penalized.
+Since we now have an additional degree of freedom, we extend the cost function (\ref{eq:trajectory_cost}) with an additional term to penalize the usage of elevation
+\begin{align}
+    \phi &=\sum (\lambda_t - \lambda_f)^2 + r_{p}p_{ct}^2 + r_{e}e_{ct}^2 \\
+         &=\sum(x^{T}Qx+u^{T}Ru)
+\end{align}
+Here, $Q$ and $R$ are diagonal matrices, with unity weight on the travel error, $r_p$ and $r_e$, so that it corresponds with the extended state and input vectors of equation (\ref{eq:day4_cost}). This formulation makes it possible to easily put some weight on the other states as well, if deviation in these states should be penalized.
 
-\subsection{Results}
-For controlling the helicopter, we used a horizon of $N=60$ timesteps and step length of 25 milliseconds witch equals to 15 seconds. This gave an optimal trajectory that looked much the same as for assignment 3 for pitch and travel. In addition, an elevator trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The solution without feedback acted in the same manner as it did in section \ref{sec:prob2}, as shown by figure \ref{fig:day4_ol}. The real trajectory of travel and elevation tried to follow the optimal solution, but the effects of linearization and having an imperfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section \ref{sec:prob2} since it did not manage to stop correctly.
+\subsection{Results open loop}
+For controlling the helicopter, we used a horizon of $N=60$ or 15 seconds. We solved the optimization problem using the built-in MATLAB function fmincon, which is an SQP-type solver. This gave an optimal trajectory that looked much the same as in section (\ref{sec:prob2}) for pitch and travel. In addition, an elevation trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The results without feedback were similiar to section \ref{sec:prob2}, as shown by figure (\ref{fig:day4_ol}).
+
+% The real trajectory of travel and elevation tried to follow the optimal solution, but the effects of linearization and having an imperfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section \ref{sec:prob2} since it did not manage to stop correctly.
 
 \begin{figure}[htb]
     \centering
-     \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{figures/day4_ol/plot_day4_OL}}
+     \includegraphics{figures/day4_ol/plot_day4_OL}
     \caption{Problem 4 open loop response}
     \label{fig:day4_ol}
 \end{figure}
 
-Using feedback and LQR, the helicopter managed to follow the calculated trajectory quite good after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation(s) in travel (and here also elevation) more than deviation in pitch.
-When working on a strongly linearized system, the system response is better when trying to follow the estimated state trajectory, rather than following the optimal input sequence. This input will, given the modelling errors, not lead to an appropriate response for the trajectories. The result, with different weights on the states of $Q_{LQR}$ can be seen in the following figures.
+\subsection{Results closed loop}
+
+Using feedback and LQR, the helicopter managed to follow the calculated trajectory better after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation in travel (and here elevation as well) more than deviation in pitch. This is again due to modelling and linearization errors, making it preferrable to track the desired travel and elevation trajectories rather than the input sequence. Figure (\ref{fig:day4_cl_plot_allQ}) compares the travel trajectory for different weights values of $Q_{\text{LQR}}$.
 
 \begin{figure}[ht!]
     \centering
