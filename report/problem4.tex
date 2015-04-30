@@ -79,7 +79,14 @@ Here, $Q$ and $R$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{
 
 For controlling the helicopter, we ended on a horizon of $N=60$ timesteps, or 15 seconds. This gave an optimal trajectory that looked much the same as for assignment 3 for pitch and travel. In addition, an elevator trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results.%forslag til bedre formulering?
 
-The solution without feedback acted in the same manner as it did in section (\ref{sec:prob2}). This can be seen in figure (??) !!!!!, the real trajectory of travel and elevation tried to follow the optimal solution, but the effect of not having a perfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section (\ref{sec:prob2}).
+The solution without feedback acted in the same manner as it did in section (\ref{sec:prob2}). This can be seen in figure (\ref{fig:day4_ol}), the real trajectory of travel and elevation tried to follow the optimal solution, but the effect of not having a perfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section (\ref{sec:prob2}).
+
+\begin{figure}[htb]
+    \centering
+     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_ol/plot_day4_OL}}
+    \caption{Problem 4 open loop response}
+    \label{fig:day4_ol}
+\end{figure}
 
 Using state feedback LQR, the helicopter managed to follow the calculated trajectory quite good after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation(s) in travel (and here also elevation) more than deviation in pitch. When the regulator is working on an inaccurate model, it is for the task given more constructive to try to follow the travel and elevation trajectories rather than the ideal, linearized input trajectory. This input will, given the unlinearities of the model, not lead to an appropriate response for the trajectories. The result, with different weights on the states of $Q_{LQR}$ can be seen in the following figures. %legge inn typ 3 figurer her med den beste og 2-3dårligere responser og i tillegg skrive på hva de ulike vektene er.
 
