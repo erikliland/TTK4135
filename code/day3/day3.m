@@ -54,7 +54,7 @@ z = quadprog(H, f, [], [], Aeq, Beq, lb, ub);
 u = z(N*nx+1:n);
 
 % LQR
-Q_LQR = diag([50 1 1 1]);
+Q_LQR = diag([1 1 10 1]);
 R_LQR = eye(nu);
 [K, S, E] = dlqr(A,B,Q_LQR,R_LQR);
 
@@ -95,7 +95,7 @@ pitch = (180/pi)*measurements(4,:);
 plot(t_real,travel, 'LineWidth', 2,'LineStyle','--');
 plot(t_real, pitch, 'LineWidth', 2, 'LineStyle', '--');
 legend('Opt travel ref', 'Opt pitch ref','Real Travel', 'Real Pitch');
-title('Simulated optimal trajectory without feedback', 'FontSize',14,'FontWeight','normal')
+title('Simulated optimal trajectory with feedback', 'FontSize',14,'FontWeight','normal')
 plot(t, zeros(2*n_offset+N,1), '--','Color', [0 0 0]);
 line([offsetTime offsetTime],get(gca,'YLim'),'Color','Black','LineWidth',1);
 line([offsetTime+N*h offsetTime+N*h],get(gca,'YLim'),'Color','Black','LineWidth',1);
