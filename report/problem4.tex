@@ -53,7 +53,7 @@ A common reason for using optimal control is to implement restrictions, such as 
 \begin{equation}
     e_k \geq \alpha \exp (-\beta (\lambda_k - \lambda_t)^2 )
 \end{equation}
-for all timesteps $k$ of the horizon. Since this is a non-linear constraint, we could no longer use a QP solver. Instead, a non-linear solver was needed, and in this case, the MATLAB function fmincon was used with a SQP-type algorithm.
+for all timesteps $k$ of the horizon. Since this is a non-linear constraint, we could no longer use a QP solver. Instead, a non-linear solver is needed, and in this case, the MATLAB function fmincon is used with a SQP-type algorithm.
 
 \subsection{Objective function}
 For this assignment, the cost function is the same as in equation (\ref{eq:trajectory_cost}), but with an extra term for penalizing elevation. We chose to set up the cost function on a more general form:
@@ -63,28 +63,29 @@ For this assignment, the cost function is the same as in equation (\ref{eq:traje
 Here, $Q$ and $R$ are diagonal matrices, with unity weight on $q_{travel}$, $r_{pitch}$ and $r_{elevation}$, so that it corresponds with the extended state and input vectors (\ref{eq:day4_cost}). This formulation makes it possible to easily put some weight on the other states as well, if deviation in these states should be penalized.
 
 \subsection{Results}
-For controlling the helicopter, we used a horizon of $N=60$ timesteps and step length of 25 milliseconds witch equals 15 seconds. This gave an optimal trajectory that looked much the same as for assignment 3 for pitch and travel. In addition, an elevator trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The solution without feedback acted in the same manner as it did in section (\ref{sec:prob2}), as shown by figure (\ref{fig:day4_ol}). The real trajectory of travel and elevation tried to follow the optimal solution, but the effects linearization and having an imperfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section (\ref{sec:prob2}) since it did not manage to stop correctly.
+For controlling the helicopter, we used a horizon of $N=60$ timesteps and step length of 25 milliseconds witch equals to 15 seconds. This gave an optimal trajectory that looked much the same as for assignment 3 for pitch and travel. In addition, an elevator trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The solution without feedback acted in the same manner as it did in section \ref{sec:prob2}, as shown by figure \ref{fig:day4_ol}. The real trajectory of travel and elevation tried to follow the optimal solution, but the effects of linearization and having an imperfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section \ref{sec:prob2} since it did not manage to stop correctly.
 
 \begin{figure}[htb]
     \centering
-     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_ol/plot_day4_OL}}
+     \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{figures/day4_ol/plot_day4_OL}}
     \caption{Problem 4 open loop response}
     \label{fig:day4_ol}
 \end{figure}
 
 Using feedback and LQR, the helicopter managed to follow the calculated trajectory quite good after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation(s) in travel (and here also elevation) more than deviation in pitch.
 When working on a strongly linearized system, the system response is better when trying to follow the estimated state trajectory, rather than following the optimal input sequence. This input will, given the modelling errors, not lead to an appropriate response for the trajectories. The result, with different weights on the states of $Q_{LQR}$ can be seen in the following figures.
+
 \begin{figure}[ht!]
     \centering
-     \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{figures/day4_cl/plot_day4_cl_allQ}}
+     \includegraphics[width=1.0\textwidth]{figures/day4_cl/plot_day4_cl_allQ}
     \caption{Plot day 4 closed loop}
     \label{fig:day4_cl_plot_allQ}
 \end{figure}
 
-One thing worth noticing is that the trajectory of elevation consequently fell below the constraint at the peak of the constraint, after approximately 11 seconds. We believe this is due to the fact that our model suggests that there is no link between the model for elevation, and that of pitch. They are in fact linked, and because of this, the regulator doesn't manage to meet both demands perfectly at the same time, and we get a deviation. If the model would include these crossing terms, the result would probably be better. The problem with this approach is that it leads to a non linear objective function, which takes longer time to compute for the solver.
-\begin{figure}[htb]
+One thing worth noticing is that the trajectory of elevation consequently fell below the constraint at the peak of the constraint, approximately 11 seconds into the simulation. We believe this is due to the fact that our model suggests that there is no link between the model for elevation, and that of pitch. They are in fact linked, and because of this, the regulator doesn't manage to meet both demands perfectly at the same time, and we get a deviation. If the model would include these crossing terms, the result would probably be better. The problem with this approach is that it leads to a non linear objective function, which takes longer time to compute for the solver.
+\begin{figure}[ht!]
     \centering
-     \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_20_1_marked2}}
+     \includegraphics[width=0.8\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_20_1_marked2}
     \caption{Coupling between pitch and elevation}
     \label{fig:coupling_pitch_elev}
 \end{figure}
