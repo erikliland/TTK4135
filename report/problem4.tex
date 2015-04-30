@@ -49,7 +49,7 @@ We discretize (\ref{eq:extended_state_space}) using the same method as in sectio
 where $I$ is the $6\times6$ identity matrix.
 
 \subsection{Modelling the restriction}
-A common application of optimal control is to implement restrictions, such as avoiding physical objects or as constraints in the optimization problem. Such restrictions can not be enforced when using only state feedback controllers. We wished to restrict the helicopter head to move above the bell-shaped curve
+A common reason for using optimal control is to implement restrictions, such as avoiding physical objects or as constraints in the optimization problem. Such restrictions can not be enforced when using only state feedback controllers. We wish to restrict the helicopter head to move above the bell-shaped curve
 \begin{equation}
     e_k \geq \alpha \exp (-\beta (\lambda_k - \lambda_t)^2 )
 \end{equation}
@@ -81,31 +81,10 @@ When working on a strongly linearized system, the system response is better when
     \label{fig:day4_cl_plot_allQ}
 \end{figure}
 
-One thing worth noticing is that the trajectory of elevation consequently fell below the constraint at the peak of the constraint. We believe this is due to the fact that our model suggests that there is no link between the model for elevation, and that of pitch. They are in fact linked, and because of this, the regulator doesn't manage to meet both demands perfectly at the same time, and we get a deviation. If the model would include these crossing terms, the result would probably be better. The problem with this approach is that it leads to a non linear objective function, which takes longer time to compute for the solver.
-% TODO: Add figure showing the helicopter following the non-linear constraint. Showing the associated input. Explain why the input looks like it does.
+One thing worth noticing is that the trajectory of elevation consequently fell below the constraint at the peak of the constraint, after approximately 11 seconds. We believe this is due to the fact that our model suggests that there is no link between the model for elevation, and that of pitch. They are in fact linked, and because of this, the regulator doesn't manage to meet both demands perfectly at the same time, and we get a deviation. If the model would include these crossing terms, the result would probably be better. The problem with this approach is that it leads to a non linear objective function, which takes longer time to compute for the solver.
 \begin{figure}[htb]
-	\centering
-   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_30_10}}
-	\caption{Plot day 4 closed loop Q=diag(20 1 1 1 30 10)}
-	\label{fig:day4_cl_plot_20_1_1_1_30_10}
-\end{figure}
-
-% Notation:
-% x_e^*: Computed elevation trajectory
-% x_t^*: Computed travel trajectory
-% u_p^*: Computed pitch setpoint sequence
-% u_e^*: Computed elevation setpoint sequence
-
-
-% Notat
-% Cirka 11 sek ut i simuleringa, så ser vi at det er avvik mellom humpen og faktisk elevation, samtidig som det er avvik mellom travel-bane og faktisk travel. Vi har forsøkt å tune slik at elevation følger humpen tettere, men uten hell.
-
-% Grunnen til dette tror vi er fordi det er en tradeoff i virkeligheten mellom å følge travel-banen og humpen. For å følge humpen bedre, så brukes pitch på en slik måte at det blir større avvik fra travel-banen. I modellen antas at pitch og elevation er fullstendig separerte, og dette problemet skal i teorien ikke oppstå. Men i virkeligheten er det en kobling.
-
-% TODO: Forklar dette fenomenet. Referér til figuren, ved hump-toppen.
-\begin{figure}[htb]
-	\centering
-   	 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_20_1_marked2}}
-	\caption{Coupling between pitch and elevation}
-	\label{fig:coupling_pitch_elev}
+    \centering
+     \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figures/day4_cl/plot_day4_CL_q_20_1_1_1_20_1_marked2}}
+    \caption{Coupling between pitch and elevation}
+    \label{fig:coupling_pitch_elev}
 \end{figure}
