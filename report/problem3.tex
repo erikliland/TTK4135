@@ -1,10 +1,10 @@
-\section{Optimal Control of Pitch/Travel with Feedback (LQ)}\label{sec:prob3}
+\section{Optimal Control of Pitch and Travel with Feedback (LQ)}\label{sec:prob3}
 This problem involves implementing an LQ controller for optimal control with feedback. We will calculate a gain matrix K using the LQ controller, implement feedback on the helicopter, and look into if MPC is a good alternative to LQ.
 
 \subsection{Calculating the gain matrix K}
 For calculating the gain matrix K we needed to use the matlab function dlqr, which is a linear-quadratic regulator design that minimiizes the cost function:
 \begin{equation}
-J = Sum {x'Qx + u'Ru + 2*x'Nu}
+J = \sum {x^TQx + u^TRu + 2*x^TNu}
 \end{equation}.
 This function depend on the system matrices A and B aswell as Q and R, which we will need to choose an appropriate weight on. At first we choose Q and R as:
 
@@ -32,7 +32,8 @@ This function depend on the system matrices A and B aswell as Q and R, which we 
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
 \end{bmatrix}
-\end{equation}
+\end{equation}.
+
 
 \subsection{Implementing feedback on the helicopter}
 An implementation of feedback can be seen on the simulink diagram.
@@ -54,7 +55,7 @@ By using the gain matrix K calculated in last task, we see that by penalizing tr
 	\label{fig:day3_plot_50_1_1_1}
 \end{figure}
 
-We also tried penalizing the pitch more than travel, which gave us a bad result. This because the optimal pitch reference trajectory is based on a bad model.
+We also tried penalizing the pitch more than travel, which gave us a bad result. Figure \ref{fig:day3_plot_1_1_10_1} shows how the real travel trajectory did not follow the optimal. This is because the optimal pitch reference trajectory is based on a bad model.
 %Figure of helicopter response for Q_LQR = diag[1 1 10 1]
 \begin{figure}[htb]
 	\centering

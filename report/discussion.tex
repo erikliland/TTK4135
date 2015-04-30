@@ -1,13 +1,11 @@
 \section{Discussion}\label{sec:discussion}
-TODO: Se template
 \subsection{Optimal control without feedback}
-When controlling the helicopter with only the estimated optimal input sequence, the linearization and modeling errors becomes to large, and the helicopters behavior will deviate drastically from the estimated response.
+When controlling the helicopter with only the estimated optimal input sequence, the linearization and modeling errors becomes to large, and the helicopters behavior will deviate drastically from the estimated response. However, there is one benefit from using optimal control without feedback; the ability to limit inputs. So if the system need optimal control with limits on states and inputs, and also need feedback, MPC is the way to go. See section under.
 
 \subsection{Optimal control with feedback}
-While the open-loop configuration of optimal control was quite poor, the closed-loop configuration with a LQR was quite promising.
+While the open-loop configuration of optimal control was quite poor, the closed-loop configuration with a LQR was quite promising. Our testing showed that the optimal state trajectory was much more useful than the optimal input sequence. With a LQR this could be achieved by weighting the error in travel and pitch quite much. This way the regulator acts like a compensator on modeling errors since its additive with the optimal input sequence.
 
-- Limit inputs
-- Avoid areas
+Another effect of including feedback on an optimal trajectory is that the final input is no longer guaranteed to be within the constraints of the optimization problem.
 
-\subsection{MPC w/ implicit feedback}
-
+\subsection{MPC with implicit feedback}
+As mentioned in the first section, optimal open-loop configuration performs quite poor caused by the lack of feedback. This is where MPC makes an entry, with its re-optimization every time step with the previous measured / estimated state as initial conditions. Since this is done every time step, only the first step of the input sequence is used. This way we get both an implicit feedback and the possibilities to set constraints on states and inputs. 

@@ -1,4 +1,4 @@
-\section{Optimal Control of Pitch/Travel without Feedback}\label{sec:prob2}
+\section{Optimal Control of Pitch and Travel without Feedback}\label{sec:prob2}
 
 In this section an optimal trajectory $x^*$ and a corresponding input sequence $u^*$ was calculated. The trajectory should bring the helicopter from an initial state to another predefined state. No feedback was used to correct for deviations from the calculated trajectory. Also, elevation was disregarded, that is, $e=0$ was assumed for this part. The computation of the optimal trajectory was formulated as a discrete convex optimization problem.
 
@@ -22,7 +22,7 @@ The system can be written on continuous-time state-space form:
 \end{equation}
 
 with $x = \begin{bmatrix} \lambda & r & p & \dot{p} \end{bmatrix}^T$ and $u = p_c$.
-The continuous-time system matrices for this model is:
+The continuous-time system matrices for this model are:
 
 \begin{equation}
 	A_c = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & -K_2 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & -K_1K_{pp} & -K_1K_{pd} \end{bmatrix}
@@ -60,7 +60,7 @@ is obtained. A suitable approximation for the discrete-time matrices is then
 	B \approx hB_c
 \end{equation}
 
-These matrices are computed in Matlab, and are therefore not shown explicitly here.
+These matrices were computed in Matlab, and are therefore not shown explicitly here.
 
 
 \subsection{Computation of optimal trajectory}
@@ -78,7 +78,7 @@ for some scalar weight $q \geq 0$ over the finite horizon of states and inputs
 	z = (x_1 \; x_2 \; ... \; x_N \; u_1 \; u_2 \; ... \; u_N)^T
 \end{equation}
 
-This was done in Matlab using the function quadprog. The discrete-time system dynamics was implemented as equality constraints of the form $A_{\text{eq}}z = B_{\text{eq}}$, where $A_{\text{eq}}$ and $B_{\text{eq}}$ are given by the left- and right-hand side of the $N$ constraints
+This was done in Matlab using the function quadprog. The discrete system dynamics was implemented as equality constraints of the form $A_{\text{eq}}z = B_{\text{eq}}$, where $A_{\text{eq}}$ and $B_{\text{eq}}$ are given by the left- and right-hand side of the $N$ constraints
 
 \begin{align*}
 	x_1 - Bu_0        &= Ax_0 \\
@@ -109,12 +109,13 @@ for $t = 0...N-1$. Applying these constraints to all states and inputs in the so
 
 which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$. Solving the optimization problem with different weights $q$ did not lead to any significant differences in the trajectory because the model inaccuracies made the helicopter drift away from the desired state anyway.
 
-The objective function (\ref{eq:trajectory_cost}) weigths the input relative to the state deviations using the weigth parameter $q$. The term $(\lambda_i - \lambda_f)^2$ is the state deviations. They are squared to priotitize the largest deviations. Note that the cost function (\ref{eq:trajectory_cost}) does not take into consideration that $\lambda_i$ plus some multiple of $2\pi$ describes the same physical orientation of the helicopter. For example, if the reference is $0$ and $\lambda_i = 2\pi$, it will be regarded as a large error, even though the helicopter is infact in the desired orientation. A more optimal scheme would take this into consideration.
+The objective function (\ref{eq:trajectory_cost}) weights %er dette riktig ord for å vekte noe?
+the input relative to the state deviations using the weight parameter $q$. The term $(\lambda_i - \lambda_f)^2$ is the state deviations. They are squared to prioritize the largest deviation. Note that the cost function (\ref{eq:trajectory_cost}) does not take into consideration that $\lambda_i$ plus some multiple of $2\pi$ describes the same physical orientation of the helicopter. For example, if the reference is $0$ and $\lambda_i = 2\pi$, it will be regarded as a large error, even though the helicopter is in fact in the desired orientation. A more optimal scheme would take this into consideration.
 
 
 \subsection{Implementation}
 
-Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes was added on both sides of the input sequense to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state. 
+Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes was added on both sides of the input sequence to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state. 
 
 \begin{figure}[htb]
 	\centering
@@ -123,4 +124,4 @@ Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes was a
 	\label{fig:day2_plot}
 \end{figure}
 
-The deviation was caused by an imperfect model. A perfect model is impossible to construct, and without feedback, the model inaccuracies will lead to nonoptimal results in the real world. For example, the pitch-regulator in our model is fast enough to follow its input perfectly, and we are using a linear model that clearly does not correspond perfectly to the real helicopter.
+The deviation was caused by an imperfect model. A perfect model is  unrealistic to construct, and without feedback, the model inaccuracies will lead to nonoptimal results in the real world. For example, the pitch-regulator in our model is fast enough to follow its input perfectly, and we are using a linear model that clearly does not correspond perfectly to the real helicopter.

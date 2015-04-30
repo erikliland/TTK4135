@@ -12,7 +12,7 @@ These angles are measured by the encoders at each rotational joint. We can affec
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width = 0.55\textwidth]{figures/hardware_setup.eps}
+	\includegraphics[width = 0.6\textwidth]{figures/hardware_setup.eps}
 	\caption{The helicopter hardware setup}
 	\label{fig:hardware}
 \end{figure}
@@ -38,12 +38,13 @@ differential equations below.
 \end{align}
 \end{subequations}
 
-The associated nomenclature is listed in table (\ref{tab:variables}). This model deserves some discussion. First, a complete model would have (non-linear) trigonometric terms. But such a model is impractical for use in dynamic optimization schemes. Instead, we linearize the model by assuming that the pitch and elevation angles are both very close to zero.
+The associated nomenclature is listed in table (\ref{tab:variables}). This model deserves some discussion. First, a complete model would have (non-linear) trigonometric terms. But such a model is impractical for use in dynamic optimization schemes. Instead, we linearize the model by assuming that the pitch and elevation angles are both close to zero.
 
 The resulting model has the advantage of being compatible with highly efficient techniques that have been developed specifically for linear optimization problems. It is however a very simple model, and omits any interaction between elevation and pitch angle/travel. While there will always be modelling errors due to process noise, or inaccurate measurements/parameters, this simplification will affect the computed optimal control. We can dampen the effect from the error by keeping the system close to the linearization point, for instance by constraining the angles to be within a margin around equilibrium.
 
 Second, the model incorporates a PID controller for the elevation, which is assumed to counteract the constant torque due to gravity, as well as a PD controller for the pitch. The result of this is that our goal in the optimization problem is to compute the setpoints, $e_c$ and $p_c$. Computing the appropriate voltages is left to the internal controllers.
 
+\newpage
 \begin{table}[ht]
     \centering
     \caption{Parameters and values}
@@ -86,11 +87,10 @@ Second, the model incorporates a PID controller for the elevation, which is assu
     $V_s$                  & Voltage sum, $V_f + V_b$ \\
     $K_{pp},K_{pd},K_{ep},K_{ei}, K_{ed}$ & Controller gains \\
     $T_g$                  & Moment needed to keep the helicopter flying \\
-    % $\lambda^*$
-    % $e_c^*$
+    $\lambda^*$        & Optimal travel trajectory \\
+    $p_c^*$               & Optimal pitch setpoint \\
+    $e_c^*$               & Optimal elevation setpoint \\
     \hline
     \end{tabular}
     \label{tab:variables}
-
-TODO: Variable notation for plots and stuff.
 \end{table}
