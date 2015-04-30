@@ -40,7 +40,7 @@ The system dynamics was implemented as a sequence of constraints in the optimiza
 	\label{eq:discrete_state_space_axbu}
 \end{equation}
 
-The model was discretized using forward-Euler with timestep $h$.
+The model was discretized using the Forward-Euler method with timestep $h$.
 
 \begin{equation}
 	\dot{x}_k \approx \frac{x_{k+1} - x_k}{h}
@@ -107,7 +107,7 @@ for $t = 0...N-1$. Applying these constraints to all states and inputs in the so
 	\end{bmatrix}_{t=0..N-1}
 \end{equation},
 
-which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$. Solving the optimization problem with different weights $q$ did not lead to any significant differences in the trajectory because the model inaccuracies made the helicopter drift away from the desired state anyway.
+which can be implemented as an inequality constraint of the form $A_{\text{iq}} z \leq B_{\text{iq}}$. Solving the optimization problem with different weights $q$ did not lead to any significant differences in the trajectory, this because the model inaccuracies made the helicopter drift away from the desired state anyway.
 
 The objective function (\ref{eq:trajectory_cost}) weights %er dette riktig ord for å vekte noe?
 the input relative to the state deviations using the weight parameter $q$. The term $(\lambda_i - \lambda_f)^2$ is the state deviations. They are squared to prioritize the largest deviation. Note that the cost function (\ref{eq:trajectory_cost}) does not take into consideration that $\lambda_i$ plus some multiple of $2\pi$ describes the same physical orientation of the helicopter. For example, if the reference is $0$ and $\lambda_i = 2\pi$, it will be regarded as a large error, even though the helicopter is in fact in the desired orientation. A more optimal scheme would take this into consideration.
@@ -115,7 +115,7 @@ the input relative to the state deviations using the weight parameter $q$. The t
 
 \subsection{Implementation}
 
-Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes was added on both sides of the input sequence to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state. 
+Figure (\ref{fig:day2_plot}) shows the implementation with $q = 1$. Zeroes were added on both sides of the input sequence to give time to initialize and stabilize the helicopter. As can be seen from the figure, the helicopter does not reach its desired final state. 
 
 \begin{figure}[htb]
 	\centering
