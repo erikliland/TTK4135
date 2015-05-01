@@ -11,27 +11,20 @@ Here $x^*$ is the optimal trajectory and $u^*$ is the optimal input sequence. Th
     \label{eq:cost_function_lqr_day3}
     J = \sum_{i=0}^\infty {\Delta x_{i+1}^TQ\Delta x_{i+1} + \Delta u_{i}^TR\Delta u_{i}}
 \end{equation}
-subject to the linear model
-\begin{equation}
-    \Delta x_{i+1} = A\Delta x + B\Delta u
-\end{equation}
-where $\Delta x$ and $\Delta u$ are deviations from the optimal trajectory. Q and R are weighting matrices that can be chosen to penalize individual deviations in states or input. We discuss how we tuned these matrices in the next section.
+subject to the linear model $\Delta x_{i+1} = A\Delta x + B\Delta u$, where $\Delta x$ and $\Delta u$ are deviations from the optimal trajectory. Q and R are weighting matrices that can be chosen to penalize individual deviations in states or input. We discuss how we tuned these matrices in the next section.
 
 \subsection{Results}
-
 We used the built-in MATLAB function dlqr to solve the Riccati-equation for the optimization problem corresponding to (\ref{eq:cost_function_lqr_day3}), and compute the optimal gain $K$. We chose $Q$ and $R$ to be diagonal matrices, with $R$ constant and equal to the identity. $Q$ was then tuned by increasing or decreasing the weights along the diagonal.
 
-We found that by keeping R constant at unity weight and tuning Q, we saw that by weighting travel more than pitch (50 1 1 1), the helicopter followed the travel trajectory closer than when weighting all states the same. Weighting deviation in pitch more than travel (1 1 10 1) gave a bad result. Figure (\ref{fig:day3_plot_allQ}) shows how the trajectory based on these different weights turned out compared to the mathematical optimal path. The reason for this was that the optimal pitch reference trajectory was based on a linearized model.
-
 \begin{figure}[htb]
-	\centering
-    	\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/day3/plot_day3_allQ}}
-	\caption{Plot of section \ref{sec:prob3} with differently tuned Q}
-	\label{fig:day3_plot_allQ}
+    \centering
+        \includegraphics[width=0.7\textwidth]{figures/day3/plot_day3_allQ}
+        % \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/day3/plot_day3_allQ}}
+    \caption{Plot of section \ref{sec:prob3} with differently tuned Q}
+    \label{fig:day3_plot_allQ}
 \end{figure}
 
-
-
+Figure (\ref{fig:day3_plot_allQ}) shows the measured travel trajectory with different values of $Q$, compared to the computed optimal path. We found that by weighting travel more than pitch (50 1 1 1), the helicopter followed the travel trajectory closer than when weighting all states the same. Weighting deviation in pitch more than travel (1 1 10 1) gave a bad result. The reason for this was that the optimal pitch setpoint was computed for an unrealistic model.
 
 \subsection{Comparison between LQR and MPC}
 The way to implement an MPC controller would be to calculate a new optimal trajectory at each time step. The first time step of each calculated optimal input sequence should then be used as the input $u_t$ for that time step.
