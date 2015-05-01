@@ -100,7 +100,7 @@ Note that the cost function does not take into consideration that $\lambda_i$ pl
 
 \subsection{Results}
 
-We solved the optimization problem using the built-in MATLAB function \texttt{quadprog}, over a horizon of length $N=100$ or $25$ seconds. We appended $5$ seconds of zeroes on both sides of the resulting optimal input sequence, to give the system time to stabilize at the initial state. The input sequence was fed into the internal regulators as setpoints, as shown in figure (\ref{fig:simulink_day2}).
+We solved the optimization problem using the built-in MATLAB function \texttt{quadprog}, over a horizon of length $N=100$ or $25$ seconds. We appended $5$ seconds of zeroes on both sides of the resulting optimal input sequence, to give the system time to stabilize at the initial state. The input sequence was fed into the internal regulators as setpoints, as shown in figure \ref{fig:simulink_day2}.
 
 \begin{figure}[htb]
     \centering
@@ -109,6 +109,6 @@ We solved the optimization problem using the built-in MATLAB function \texttt{qu
     \label{fig:day2_plot}
 \end{figure}
 
-Figure (\ref{fig:day2_plot}) shows the measured trajectories for travel and pitch, using $q = 1$. We see that the helicopter did not reach the planned final state, even though the pitch matched fairly well with the optimal setpoint. Selecting different values of $q$ did not lead to any significant improvements, and the helicopter still deviated heavily from the planned trajectory.
+Figure \ref{fig:day2_plot} shows the measured trajectories for travel and pitch, using $q = 1$. We see that the helicopter did not reach the planned final state, even though the pitch matched fairly well with the optimal setpoint. Selecting different values of $q$ did not lead to any significant improvements, and the helicopter still deviated heavily from the planned trajectory.
 
 The biggest cause for this is the lack of feedback. Modelling inaccuracies, disturbances, and linearization errors all contribute to making the computed input unfit for the real system. Since constructing a perfect model is unrealistic, feedback will be necessary to compensate for such errors.
