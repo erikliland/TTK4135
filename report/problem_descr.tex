@@ -8,7 +8,7 @@ and a balance weight at the other. We parametrize the helicopter state by three 
     \item Elevation ($e$): At the arm joint about a horizontal axis
     \item Pitch ($p$): At the head joint about the arm axis
 \end{itemize}
-These angles are measured by the encoders at each rotational joint. We can affect the motion by adjusting the voltage input to the DC motors. Propellers are attached to the motors, and the thrust generated is assumed to be proportional to the voltage applied, with identical motor constant for both motors. Figure (\ref{fig:hardware}) shows the helicopter and the relevant angles. Table (\ref{tab:parameters}) shows the parameters for the helicopter used in the report.
+These angles are measured by the encoders at each rotational joint. We can affect the motion by adjusting the voltage input to the DC motors. Propellers are attached to the motors, and the thrust generated is assumed to be proportional to the voltage applied, with identical motor constant for both motors. Figure \ref{fig:hardware} shows the helicopter and the relevant angles. Table \ref{tab:parameters} shows the parameters for the helicopter used in the report.
 
 \begin{figure}[htb]
 	\centering
@@ -37,7 +37,7 @@ differential equations below.
 \end{align}
 \end{subequations}
 
-The associated nomenclature is listed in table (\ref{tab:variables}). This model deserves some discussion. First, a complete model would have (non-linear) trigonometric terms. But such a model is impractical for use in dynamic optimization schemes. Instead, we linearize the model by assuming that the pitch and elevation angles are both close to zero.
+The associated nomenclature is listed in table \ref{tab:variables}. This model deserves some discussion. First, a complete model would have (non-linear) trigonometric terms. But such a model is impractical for use in dynamic optimization schemes. Instead, we linearize the model by assuming that the pitch and elevation angles are both close to zero.
 
 The resulting model has the advantage of being compatible with highly efficient techniques that have been developed specifically for linear optimization problems. It is however a very simple model, and omits any interaction between elevation and pitch angle/travel. While there will always be modelling errors due to process noise, or inaccurate measurements/parameters, this simplification will affect the computed input. We can dampen the effect of the error by keeping the system close to the linearization point, for instance by constraining the angles to be within a margin around equilibrium.
 

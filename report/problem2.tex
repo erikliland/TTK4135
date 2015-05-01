@@ -3,7 +3,7 @@
 In this section we compute an optimal trajectory $x^*$ and a corresponding input sequence $u^*$. The trajectory should bring the helicopter from an initial state to a desired final state. We do not use feedback to correct for deviations from the calculated trajectory. The computation of the optimal trajectory is formulated as a convex optimization problem.
 
 \subsection{The helicopter model on continuous-time state-space form}
-The system (\ref{eq:model_al}) describes the helicopter plant, with a basic control layer consisting of PID and PD controllers for elevation and pitch. In this section we focus on the optimization layer that gives the input to these regulators, see figure (\ref{fig:control_hierarchy}).
+The system (\ref{eq:model_al}) describes the helicopter plant, with a basic control layer consisting of PID and PD controllers for elevation and pitch. In this section we focus on the optimization layer that gives the input to these regulators, see figure \ref{fig:control_hierarchy}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/day2/control_hierarchy_day2}
