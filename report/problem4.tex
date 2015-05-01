@@ -64,7 +64,7 @@ Since we now have an additional degree of freedom, we extend the cost function (
 Here, $Q$ and $R$ are diagonal matrices, with unity weight on the travel error, $r_p$ and $r_e$, so that it corresponds with the extended state and input vectors of equation (\ref{eq:day4_cost}). This formulation makes it possible to easily put some weight on the other states as well, if deviation in these states should be penalized.
 
 \subsection{Results open loop}
-For controlling the helicopter, we used a horizon of $N=60$ or 15 seconds. We solved the optimization problem using the built-in MATLAB function fmincon, which is an SQP-type solver. This gave an optimal trajectory that looked much the same as in section (\ref{sec:prob2}) for pitch and travel. In addition, an elevation trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The results without feedback were similiar to section \ref{sec:prob2}, as shown by figure (\ref{fig:day4_ol}).
+For controlling the helicopter, we used a horizon of $N=60$ or 15 seconds. We solved the optimization problem using the built-in MATLAB function fmincon, which is an SQP-type solver. This gave an optimal trajectory that looked much the same as in section \ref{sec:prob2} for pitch and travel. In addition, an elevation trajectory just touching the top of the bell curve constraint was also calculated. The suggested horizon of $N=40$ did not terminate in reasonable time, and was therefore replaced by a longer horizon giving reasonable results. The results without feedback were similiar to section (\ref{sec:prob2}), as shown by figure \ref{fig:day4_ol}.
 
 % The real trajectory of travel and elevation tried to follow the optimal solution, but the effects of linearization and having an imperfect model became more and more clear as time passed, and at the end of the horizon, the travel drifted away from the solution just like in section \ref{sec:prob2} since it did not manage to stop correctly.
 
@@ -77,7 +77,7 @@ For controlling the helicopter, we used a horizon of $N=60$ or 15 seconds. We so
 
 \subsection{Results closed loop}
 
-Using feedback and LQR, the helicopter managed to follow the calculated trajectory better after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation in travel (and here elevation as well) more than deviation in pitch. This is again due to modelling and linearization errors, making it preferrable to track the desired travel and elevation trajectories rather than the input sequence. Figure (\ref{fig:day4_cl_plot_allQ}) compares the travel trajectory for different weights values of $Q_{\text{LQR}}$.
+Using feedback and LQR, the helicopter managed to follow the calculated trajectory better after some tuning. As in section (\ref{sec:prob3}), it was appropriate to weight deviation in travel (and here elevation as well) more than deviation in pitch. This is again due to modelling and linearization errors, making it preferrable to track the desired travel and elevation trajectories rather than the input sequence. Figure \ref{fig:day4_cl_plot_allQ} compares the travel trajectory for different weights values of $Q_{\text{LQR}}$.
 
 \begin{figure}[ht!]
     \centering

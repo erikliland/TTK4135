@@ -3,7 +3,7 @@
 In this section we compute an optimal trajectory $x^*$ and a corresponding input sequence $u^*$. The trajectory should bring the helicopter from an initial state to a desired final state. We do not use feedback to correct for deviations from the calculated trajectory. The computation of the optimal trajectory is formulated as a convex optimization problem.
 
 \subsection{The helicopter model on continuous-time state-space form}
-The system (\ref{eq:model_al}) describes the helicopter plant, with a basic control layer consisting of PID and PD controllers for elevation and pitch. In this section we focus on the optimization layer that gives the input to these regulators, see figure (\ref{fig:control_hierarchy}).
+The system (\ref{eq:model_al}) describes the helicopter plant, with a basic control layer consisting of PID and PD controllers for elevation and pitch. In this section we focus on the optimization layer that gives the input to these regulators, see figure \ref{fig:control_hierarchy}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/day2/control_hierarchy_day2}
@@ -100,7 +100,7 @@ Note that the cost function does not take into consideration that $\lambda_i$ pl
 
 \subsection{Results}
 
-We solved the optimization problem using the built-in MATLAB function \texttt{quadprog}, over a horizon of length $N=100$ or $25$ seconds. We appended $5$ seconds of zeroes on both sides of the resulting optimal input sequence, to give the system time to stabilize at the initial state. The input sequence was fed into the internal regulators as setpoints, as shown in figure (\ref{fig:simulink_day2}).
+We solved the optimization problem using the built-in MATLAB function \texttt{quadprog}, over a horizon of length $N=100$ or $25$ seconds. We appended $5$ seconds of zeroes on both sides of the resulting optimal input sequence, to give the system time to stabilize at the initial state. The input sequence was fed into the internal regulators as setpoints, as shown in figure \ref{fig:simulink_day2}.
 
 \begin{figure}[htb]
     \centering
@@ -109,6 +109,6 @@ We solved the optimization problem using the built-in MATLAB function \texttt{qu
     \label{fig:day2_plot}
 \end{figure}
 
-Figure (\ref{fig:day2_plot}) shows the measured trajectories for travel and pitch, using $q = 1$. We see that the helicopter did not reach the planned final state, even though the pitch matched fairly well with the optimal setpoint. Selecting different values of $q$ did not lead to any significant improvements, and the helicopter still deviated heavily from the planned trajectory.
+Figure \ref{fig:day2_plot} shows the measured trajectories for travel and pitch, using $q = 1$. We see that the helicopter did not reach the planned final state, even though the pitch matched fairly well with the optimal setpoint. Selecting different values of $q$ did not lead to any significant improvements, and the helicopter still deviated heavily from the planned trajectory.
 
 The biggest cause for this is the lack of feedback. Modelling inaccuracies, disturbances, and linearization errors all contribute to making the computed input unfit for the real system. Since constructing a perfect model is unrealistic, feedback will be necessary to compensate for such errors.
